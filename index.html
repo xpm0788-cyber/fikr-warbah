@@ -1,0 +1,329 @@
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>فكّر واربح | النسخة التلفزيونية</title><link rel="icon" href="data:,">
+<link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Cairo:wght@600;800;900&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;--blue:#0756C9;--night:#07152F;--gold:#FFB629;--wrong:#F04452;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}html,body{margin:0;color:#fff;font-family:Cairo,system-ui,sans-serif;font-weight:800;background:#030b1c}
+body{min-height:100vh}body::before{content:"";position:fixed;inset:0;z-index:-2;background:radial-gradient(ellipse at 50% -10%,#0b4fc4,#07152F 55%,#030b1c)}
+body::after{content:"";position:fixed;inset:-30%;z-index:-1;background:conic-gradient(from 0deg at 50% -10%,transparent 0 40deg,#ffb62918 50deg,transparent 60deg 120deg,#4da3ff18 130deg,transparent 140deg 220deg,#ffb62918 230deg,transparent 240deg);animation:sweep 16s ease-in-out infinite alternate}
+@keyframes sweep{from{transform:rotate(-9deg)}to{transform:rotate(9deg)}}
+h1,h2,h3,.logo b,.bank,.team strong,.q,li i,li em,.win,.sc b{font-family:Lalezar,Cairo,sans-serif;font-weight:400}
+button{font:inherit;font-weight:900;padding:12px;margin:4px 0;border:0;border-radius:14px;background:linear-gradient(#1f55b0,#12315f);box-shadow:0 4px 0 #061a3d;color:#fff;min-height:50px;cursor:pointer;font-size:1.05rem}
+button:active{transform:translateY(3px);box-shadow:0 1px 0 #061a3d}button:disabled{opacity:.3}
+.gold{background:linear-gradient(#ffd36b,#ffa400);color:#1a1000;box-shadow:0 4px 0 #a86a00}.red{background:linear-gradient(#ff6b78,#d62a3b);box-shadow:0 4px 0 #8c1520}.wide{width:100%}
+.wrap{display:grid;gap:12px;padding:12px;margin:auto;grid-template-columns:1fr}
+.stage{position:relative;display:grid;grid-template-columns:1fr 3.4fr 1fr;gap:16px;align-items:stretch}
+.logo{text-align:center;line-height:1}.logo b{font-size:2.6rem;background:linear-gradient(#fff3c4,#ffb629 60%,#e07b00);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 14px #ffb62988)}.logo small{display:block;letter-spacing:6px;color:#9cc4ff;font-size:.9rem}
+.board{position:relative;margin:14px;border-radius:26px;padding:14px 18px;display:flex;flex-direction:column;gap:10px;min-height:360px;
+ background:linear-gradient(#0b3d93,#062a66);border:4px solid var(--gold);box-shadow:0 0 0 6px #030b1c,0 0 60px #ffb62955,inset 0 0 60px #000a}
+.board::before{content:"";position:absolute;inset:-14px;border:5px dotted #ffe29a;border-radius:34px;animation:led 1.2s steps(2) infinite;pointer-events:none}
+@keyframes led{50%{opacity:.3}}
+.top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.bank{background:#000;border:3px solid var(--gold);border-radius:16px;color:var(--gold);font-size:3.6rem;line-height:1.1;padding:0 30px;letter-spacing:6px;text-shadow:0 0 16px var(--gold);box-shadow:inset 0 0 24px #ffb62944}
+.chip{background:#000a;border:2px solid var(--gold);border-radius:99px;padding:2px 16px;color:var(--gold);font-size:1.1rem;white-space:nowrap}
+.q{background:linear-gradient(90deg,transparent,#000b 12%,#000b 88%,transparent);border-top:2px solid #ffb62988;border-bottom:2px solid #ffb62988;padding:8px 24px;text-align:center;font-size:2.2rem;margin:0}
+.ev{text-align:center;color:#ffe29a;min-height:1.6em;font-size:1.2rem}
+ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;grid-auto-flow:column;grid-template-rows:repeat(4,1fr);gap:10px;flex:1}
+li{position:relative;display:flex;align-items:center;gap:10px;border-radius:14px;padding:6px 14px;font-size:1.5rem;min-height:56px;background:linear-gradient(#2a6fe0,#0e48ad);border:2px solid #9cc4ff88;box-shadow:inset 0 3px 0 #fff4,0 5px 0 #04204f}
+li i{font-style:normal;flex:none}li span{flex:1}
+li:not(.open) i{margin:auto;font-size:2.4rem;color:#fff;text-shadow:0 0 16px #7fb0ff}li:not(.open) em{display:none}
+li.open{background:linear-gradient(#ffd36b,#ff9d00);color:#07152F;border-color:#fff3c4;box-shadow:inset 0 3px 0 #fff8,0 5px 0 #8a5200,0 0 24px #ffb62999}
+li.open i{background:#07152F;color:var(--gold);border-radius:8px;min-width:2.2rem;text-align:center;font-size:1.4rem}li.open em{font-style:normal;background:#07152F;color:var(--gold);border-radius:8px;padding:0 12px;font-size:1.7rem}
+li.empty{opacity:.1;box-shadow:none}li.flip{animation:flip .7s}@keyframes flip{from{transform:rotateX(90deg) scale(.9)}60%{transform:rotateX(-12deg)}to{transform:none}}
+.sk{display:flex;gap:12px;justify-content:center}.sk b{width:62px;height:62px;border-radius:14px;display:grid;place-items:center;font-size:2.6rem;background:#0008;border:2px solid #fff3;color:#fff3;font-family:Lalezar,sans-serif;font-weight:400}.sk b.on{background:var(--wrong);color:#fff;box-shadow:0 0 24px var(--wrong);border-color:#fff}
+.team{position:relative;margin:14px 0;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:6px;border-radius:24px;border:3px solid var(--tc);text-align:center;padding:14px 8px;
+ background:linear-gradient(165deg,color-mix(in srgb,var(--tc) 55%,#000),#030b1c);transition:.4s;opacity:.8}
+.team.active{opacity:1;transform:scale(1.04);box-shadow:0 0 50px var(--tc),inset 0 0 30px color-mix(in srgb,var(--tc) 50%,transparent);animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{50%{box-shadow:0 0 80px var(--tc),inset 0 0 40px var(--tc)}}
+.team h3{margin:0;font-size:1.7rem}.team strong{font-size:5rem;line-height:1;text-shadow:0 0 20px #fff6}.team small{background:#000a;border-radius:99px;padding:0 14px;color:var(--gold);min-height:1.5em}
+.x{position:fixed;inset:0;display:grid;place-items:center;pointer-events:none;font-family:Lalezar,sans-serif;font-size:22rem;line-height:1;color:var(--wrong);-webkit-text-stroke:10px #fff;text-shadow:0 0 80px #000;background:#0007;animation:xf 1.4s forwards;z-index:30}
+@keyframes xf{0%{transform:scale(2.4);opacity:0}12%{transform:scale(1);opacity:1}20%{transform:translateX(-18px)}28%{transform:translateX(18px)}36%{transform:none}80%{opacity:1}100%{opacity:0}}
+.endcard{grid-column:1/-1;text-align:center;padding:40px 10px}.endcard .win{font-size:3rem;color:var(--gold);letter-spacing:6px}.endcard h1{font-size:7rem;margin:0;text-shadow:0 0 40px var(--gold)}
+.fin{display:flex;gap:30px;justify-content:center;margin-top:20px}.fin span{border:3px solid var(--tc);border-radius:20px;padding:14px 30px;font-size:1.6rem;background:#0008}.fin b{display:block;font-size:4rem;font-family:Lalezar,sans-serif;font-weight:400}
+.ctl{background:linear-gradient(#0d2a5c,#071a3a);border:1px solid #4da3ff55;border-radius:22px;padding:14px;box-shadow:0 10px 40px #000a}.ctl h3{margin:6px 0;font-size:1.5rem}.ctl p{margin:6px 0;color:#cfe2ff}
+.sc{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}.sc span{border:2px solid var(--tc);border-radius:14px;padding:6px;text-align:center;background:#0006}.sc b{display:block;font-size:2.2rem}
+.ag{display:grid;grid-template-columns:1fr 1fr;gap:6px}.ag button{margin:0;min-height:60px}
+input{font:inherit;font-weight:800;padding:12px;border-radius:12px;border:2px solid #4da3ff55;background:#030b1c;color:#fff;width:100%;margin:4px 0}
+.big{font-size:3rem;text-align:center;color:var(--gold)}
+.m-screen #ctl,.m-control #tv,.m-home #tv{display:none}.m-control .wrap,.m-home .wrap{max-width:520px}.m-screen .wrap{padding:6px 18px}.m-screen .stage{min-height:calc(100vh - 24px)}.m-screen .board{min-height:calc(100vh - 56px)}
+.duel{display:flex;justify-content:center;align-items:center;gap:16px;font-size:1.7rem}.duel span{border:3px solid var(--tc);border-radius:99px;padding:2px 24px;background:#000a;font-family:Lalezar,sans-serif;font-weight:400}.duel b{color:var(--gold)}
+.extra{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}.extra span{background:linear-gradient(#7be3a1,#2eb872);color:#032;border-radius:10px;padding:2px 14px;font-size:1.3rem}.extra em{font-style:normal;margin-inline-start:8px;background:#032;color:#7be3a1;border-radius:6px;padding:0 8px}
+.qbox{background:#000a;border:2px solid var(--gold);border-radius:14px;padding:10px;margin:6px 0;font-size:1.3rem;line-height:1.5}.qbox small{display:block;color:var(--gold);font-size:.85rem}.room{background:#0006;border-radius:12px;padding:8px;word-break:break-all;font-size:.95rem}
+textarea{font:inherit;font-weight:800;padding:10px;border-radius:12px;border:2px solid #4da3ff55;background:#030b1c;color:#fff;width:100%;margin:4px 0}
+@media(max-width:900px){.stage{grid-template-columns:1fr 1fr}.board{grid-column:1/-1;order:-1}ol{grid-template-columns:1fr;grid-auto-flow:row;grid-template-rows:none}.x{font-size:10rem}.team strong{font-size:3rem}.q{font-size:1.4rem}.bank{font-size:2.4rem}.endcard h1{font-size:3.4rem}}
+</style></head><body><div id="msg" style="text-align:center;color:var(--wrong);font-size:.9rem"></div><div class="wrap"><div class="stage" id="tv"></div><div class="ctl" id="ctl"></div></div><canvas id="cf" style="position:fixed;inset:0;pointer-events:none;z-index:20"></canvas><button id="sbtn" class="gold" style="position:fixed;bottom:10px;left:10px;display:none;z-index:9">🔊 تفعيل الصوت وملء الشاشة</button>
+<script>
+const M=[1,1,2,3],TARGET=300;
+// بنك الأسئلة: النقاط تعليمية وليست نتائج استطلاع
+// ===== بنك الأسئلة (يُختار منه عشوائيًا في كل مسابقة) =====
+// أضف سؤالًا داخل أي درس بنسخ سطر وتعديله. النقاط تعليمية وليست استطلاعًا.
+const BANK={
+'النكرة':[
+{text:'اذكر نكرة (اسمًا غير معيّن)',explanation:'النكرة اسم يدل على غير معيّن، مثل: كتاب، قلم، طالب.',answers:[['كتاب',30],['قلم',25],['طالب',20],['مدينة',15],['شجرة',10]]},
+{text:'اذكر نكرة تدل على حيوان',explanation:'قطة، حصان، أسد: نكرات لأنها غير معيّنة.',answers:[['قطة',30],['حصان',25],['أسد',20],['عصفور',15],['جمل',10]]},
+{text:'اذكر نكرة تدل على مكان',explanation:'مدرسة، بيت، حديقة: نكرات لأنها غير معيّنة.',answers:[['مدرسة',30],['بيت',25],['حديقة',20],['مسجد',15],['سوق',10]]},
+{text:'اذكر نكرة تدل على أداة مدرسية',explanation:'قلم، دفتر، كتاب: نكرات لأنها غير معيّنة.',answers:[['قلم',30],['دفتر',25],['كتاب',20],['مسطرة',15],['حقيبة',10]]},
+{text:'اذكر نكرة تدل على فاكهة',explanation:'تفاحة، موزة، برتقالة: نكرات لأنها غير معيّنة.',answers:[['تفاحة',30],['موزة',25],['برتقالة',20],['عنب',15],['تمر',10]]},
+{text:'اذكر نكرة تدل على مهنة',explanation:'معلم، طبيب، مهندس: نكرات لأنها غير معيّنة.',answers:[['معلم',30],['طبيب',25],['مهندس',20],['طيار',15],['نجار',10]]},
+{text:'اذكر نكرة تدل على وسيلة نقل',explanation:'سيارة، حافلة، طائرة: نكرات لأنها غير معيّنة.',answers:[['سيارة',30],['حافلة',25],['طائرة',20],['دراجة',15],['قطار',10]]},
+{text:'اذكر نكرة تدل على جزء من جسم الإنسان',explanation:'يد، عين، رأس: نكرات لأنها غير معيّنة.',answers:[['يد',30],['عين',25],['رأس',20],['قدم',15],['أذن',10]]},
+{text:'اذكر نكرة تدل على شيء في الصف',explanation:'سبورة، مقعد، طاولة: نكرات لأنها غير معيّنة.',answers:[['سبورة',30],['مقعد',25],['طاولة',20],['باب',15],['نافذة',10]]},
+{text:'اذكر نكرة تدل على خضار',explanation:'جزرة، خيار، بندورة: نكرات لأنها غير معيّنة.',answers:[['جزرة',30],['خيار',25],['بندورة',20],['بصل',15],['بطاطا',10]]},
+{text:'اذكر نكرة تدل على طائر',explanation:'عصفور، حمامة، نسر: نكرات لأنها غير معيّنة.',answers:[['عصفور',30],['حمامة',25],['نسر',20],['بلبل',15],['صقر',10]]},
+{text:'اذكر نكرة تدل على أداة في المطبخ',explanation:'ملعقة، سكين، صحن: نكرات لأنها غير معيّنة.',answers:[['ملعقة',30],['سكين',25],['صحن',20],['كوب',15],['إبريق',10]]},
+{text:'اذكر نكرة تدل على شيء في البيت',explanation:'سرير، طاولة، كرسي: نكرات لأنها غير معيّنة.',answers:[['سرير',30],['طاولة',25],['كرسي',20],['باب',15],['نافذة',10]]},
+{text:'اذكر نكرة تدل على فصل من فصول السنة',explanation:'صيف، شتاء، ربيع: نكرات لأنها غير معيّنة.',answers:[['صيف',30],['شتاء',25],['ربيع',20],['خريف',15]]},
+{text:'اذكر نكرة تدل على شيء في الحقيبة',explanation:'كتاب، دفتر، قلم: نكرات لأنها غير معيّنة.',answers:[['كتاب',30],['دفتر',25],['قلم',20],['مسطرة',15],['ممحاة',10]]},
+{text:'اذكر نكرة تدل على جزء من الشجرة',explanation:'ورقة، غصن، جذع: نكرات لأنها غير معيّنة.',answers:[['ورقة',30],['غصن',25],['جذع',20],['ثمرة',15],['جذر',10]]},
+{text:'اذكر نكرة تدل على شيء في السماء',explanation:'شمس، قمر، نجمة: نكرات لأنها غير معيّنة.',answers:[['شمس',30],['قمر',25],['نجمة',20],['غيمة',15],['طائرة',10]]},
+{text:'اذكر نكرة تدل على مادة دراسية',explanation:'لغة، علوم، رياضيات: نكرات لأنها غير معيّنة.',answers:[['لغة',30],['علوم',25],['رياضيات',20],['تاريخ',15],['جغرافيا',10]]},
+{text:'اذكر نكرة تدل على حيوان أليف',explanation:'قطة، كلب، أرنب: نكرات لأنها غير معيّنة.',answers:[['قطة',30],['كلب',25],['أرنب',20],['ببغاء',15],['سمكة',10]]}],
+'المعرفة':[
+{text:'اذكر نوعًا من أنواع المعرفة',explanation:'أنواع المعرفة: اسم العلم، الضمير، اسم الإشارة، الاسم الموصول، المعرّف بأل.',answers:[['اسم العلم',30],['الضمير',25],['اسم الإشارة',20],['الاسم الموصول',15],['المعرّف بأل',10]]},
+{text:'اذكر معرفة غير اسم العلم',explanation:'المعرفة تدل على معيّن: الكتاب (معرّف بأل)، هذا (اسم إشارة)، الذي (اسم موصول)، أنا وهو (ضميران).',answers:[['الكتاب',30],['هذا',25],['الذي',20],['أنا',15],['هو',10]]},
+{text:'اذكر معرفة تدل على شيء في الصف',explanation:'السبورة، الباب، الكتاب: معارف لأنها معرّفة بأل.',answers:[['السبورة',30],['الباب',25],['الكتاب',20],['النافذة',15],['الطاولة',10]]},
+{text:'اذكر معرفة تدل على إنسان',explanation:'محمد (اسم علم)، المعلم (معرّف بأل)، هو وأنا (ضميران): كلها معارف.',answers:[['محمد',30],['المعلم',25],['هو',20],['الطالب',15],['أنا',10]]},
+{text:'اذكر معرفة تدل على مكان',explanation:'المدرسة، القدس، عمّان: معارف تدل على أماكن معيّنة.',answers:[['المدرسة',30],['القدس',25],['عمّان',20],['المسجد',15],['الحديقة',10]]},
+{text:'اذكر معرفة تدل على حيوان',explanation:'الأسد، القطة، الحصان: معارف معرّفة بأل.',answers:[['الأسد',30],['القطة',25],['الحصان',20],['الجمل',15],['العصفور',10]]},
+{text:'اذكر معرفة تدل على أكثر من واحد',explanation:'هؤلاء (اسم إشارة)، الذين (اسم موصول)، نحن وهم (ضميران): معارف تدل على الجمع.',answers:[['هؤلاء',30],['الذين',25],['نحن',20],['هم',15],['اللواتي',10]]},
+{text:'اذكر معرفة تدل على مؤنث',explanation:'فاطمة (اسم علم)، التي (اسم موصول)، هذه (اسم إشارة)، هي (ضمير)، المدرسة (معرّف بأل).',answers:[['فاطمة',30],['التي',25],['هذه',20],['هي',15],['المدرسة',10]]},
+{text:'اذكر معرفة تدل على مذكر',explanation:'محمد (اسم علم)، الذي (اسم موصول)، هذا (اسم إشارة)، هو (ضمير)، الطالب (معرّف بأل).',answers:[['محمد',30],['الذي',25],['هذا',20],['هو',15],['الطالب',10]]},
+{text:'اذكر معرفة تدل على شيء في المطبخ',explanation:'الملعقة، السكين، الصحن: معارف معرّفة بأل.',answers:[['الملعقة',30],['السكين',25],['الصحن',20],['الكوب',15],['الإبريق',10]]},
+{text:'اذكر معرفة تدل على فصل من فصول السنة',explanation:'الصيف، الشتاء، الربيع، الخريف: معارف معرّفة بأل.',answers:[['الصيف',30],['الشتاء',25],['الربيع',20],['الخريف',15]]}],
+'المعرّف بأل':[
+{text:'اذكر اسمًا معرّفًا بأل التعريف',explanation:'تدخل «أل» على النكرة فتصبح معرفة: كتاب ← الكتاب.',answers:[['الكتاب',30],['المدرسة',25],['الطالب',20],['القلم',15],['الشجرة',10]]},
+{text:'اذكر اسم حيوان معرّفًا بأل',explanation:'الأسد، القطة، الحصان: أسماء معرّفة بأل، وأصل الأول نكرة: أسد.',answers:[['الأسد',30],['القطة',25],['الحصان',20],['الجمل',15],['العصفور',10]]},
+{text:'اذكر اسم مكان معرّفًا بأل',explanation:'المدرسة، المسجد، الحديقة: أسماء معرّفة بأل، وأصل الأول نكرة: مدرسة.',answers:[['المدرسة',30],['المسجد',25],['الحديقة',20],['السوق',15],['المكتبة',10]]},
+{text:'اذكر اسم فاكهة معرّفًا بأل',explanation:'التفاح، الموز، البرتقال: أسماء معرّفة بأل، وأصل الأول نكرة: تفاح.',answers:[['التفاح',30],['الموز',25],['البرتقال',20],['العنب',15],['التمر',10]]},
+{text:'اذكر مهنة معرّفة بأل',explanation:'المعلم، الطبيب، المهندس: أسماء معرّفة بأل، وأصل الأول نكرة: معلم.',answers:[['المعلم',30],['الطبيب',25],['المهندس',20],['الطيار',15],['النجار',10]]},
+{text:'اذكر وسيلة نقل معرّفة بأل',explanation:'السيارة، الحافلة، الطائرة: أسماء معرّفة بأل، وأصل الأول نكرة: سيارة.',answers:[['السيارة',30],['الحافلة',25],['الطائرة',20],['الدراجة',15],['القطار',10]]},
+{text:'اذكر جزءًا من جسم الإنسان معرّفًا بأل',explanation:'اليد، العين، الرأس: أسماء معرّفة بأل، وأصل الأول نكرة: يد.',answers:[['اليد',30],['العين',25],['الرأس',20],['القدم',15],['الأذن',10]]},
+{text:'اذكر شيئًا في الصف معرّفًا بأل',explanation:'السبورة، الباب، المقعد: أسماء معرّفة بأل، وأصل الأول نكرة: سبورة.',answers:[['السبورة',30],['الباب',25],['المقعد',20],['الطاولة',15],['النافذة',10]]},
+{text:'اذكر خضارًا معرّفًا بأل',explanation:'الجزر، الخيار، البندورة: أسماء معرّفة بأل، وأصل الأول نكرة: جزر.',answers:[['الجزر',30],['الخيار',25],['البندورة',20],['البصل',15],['البطاطا',10]]},
+{text:'اذكر طائرًا معرّفًا بأل',explanation:'العصفور، الحمامة، النسر: أسماء معرّفة بأل، وأصل الأول نكرة: عصفور.',answers:[['العصفور',30],['الحمامة',25],['النسر',20],['البلبل',15],['الصقر',10]]},
+{text:'اذكر فصلًا من فصول السنة معرّفًا بأل',explanation:'الصيف، الشتاء، الربيع: أسماء معرّفة بأل، وأصل الأول نكرة: صيف.',answers:[['الصيف',30],['الشتاء',25],['الربيع',20],['الخريف',15]]},
+{text:'اذكر شيئًا في البيت معرّفًا بأل',explanation:'السرير، الطاولة، الكرسي: أسماء معرّفة بأل، وأصل الأول نكرة: سرير.',answers:[['السرير',30],['الطاولة',25],['الكرسي',20],['الباب',15],['النافذة',10]]},
+{text:'اذكر شيئًا في الحقيبة معرّفًا بأل',explanation:'الكتاب، الدفتر، القلم: أسماء معرّفة بأل، وأصل الأول نكرة: كتاب.',answers:[['الكتاب',30],['الدفتر',25],['القلم',20],['المسطرة',15],['الممحاة',10]]},
+{text:'اذكر أداة في المطبخ معرّفة بأل',explanation:'الملعقة، السكين، الصحن: أسماء معرّفة بأل، وأصل الأول نكرة: ملعقة.',answers:[['الملعقة',30],['السكين',25],['الصحن',20],['الكوب',15],['الإبريق',10]]},
+{text:'اذكر جزءًا من الشجرة معرّفًا بأل',explanation:'الورقة، الغصن، الجذع: أسماء معرّفة بأل، وأصل الأول نكرة: ورقة.',answers:[['الورقة',30],['الغصن',25],['الجذع',20],['الثمرة',15],['الجذر',10]]},
+{text:'اذكر شيئًا في السماء معرّفًا بأل',explanation:'الشمس، القمر، النجمة: أسماء معرّفة بأل، وأصل الأول نكرة: شمس.',answers:[['الشمس',30],['القمر',25],['النجمة',20],['الغيمة',15],['الطائرة',10]]},
+{text:'اذكر مادة دراسية معرّفة بأل',explanation:'اللغة، العلوم، الرياضيات: أسماء معرّفة بأل، وأصل الأول نكرة: لغة.',answers:[['اللغة',30],['العلوم',25],['الرياضيات',20],['التاريخ',15],['الجغرافيا',10]]},
+{text:'اذكر حيوانًا أليفًا معرّفًا بأل',explanation:'القطة، الكلب، الأرنب: أسماء معرّفة بأل، وأصل الأول نكرة: قطة.',answers:[['القطة',30],['الكلب',25],['الأرنب',20],['الببغاء',15],['السمكة',10]]}],
+'أسماء العلم':[
+{text:'اذكر اسم علم لشخص',explanation:'اسم العلم يدل على شخص أو بلد بعينه، مثل: محمد، فاطمة، الأردن.',answers:[['محمد',30],['أحمد',25],['فاطمة',20],['خالد',15],['مريم',10]]},
+{text:'اذكر اسم علم لأنثى',explanation:'فاطمة، مريم، عائشة: أعلام لإناث.',answers:[['فاطمة',30],['مريم',25],['عائشة',20],['سارة',15],['زينب',10]]},
+{text:'اذكر اسم علم لذكر',explanation:'محمد، أحمد، خالد: أعلام لذكور.',answers:[['محمد',30],['أحمد',25],['خالد',20],['عمر',15],['يوسف',10]]},
+{text:'اذكر اسم علم لشخص يبدأ بحرف الميم',explanation:'محمد، مريم، محمود: أعلام لأشخاص.',answers:[['محمد',30],['مريم',25],['محمود',20],['ماجد',15],['منى',10]]},
+{text:'اذكر اسم علم لبلد',explanation:'الأردن، فلسطين، مصر: أعلام لبلدان.',answers:[['الأردن',30],['فلسطين',25],['مصر',20],['تركيا',15],['السعودية',10]]},
+{text:'اذكر اسم علم لدولة عربية',explanation:'فلسطين، الأردن، مصر: أعلام لدول عربية.',answers:[['فلسطين',30],['الأردن',25],['مصر',20],['السعودية',15],['العراق',10]]},
+{text:'اذكر اسم علم لمدينة عربية',explanation:'القدس، عمّان، القاهرة: أعلام لمدن.',answers:[['القدس',30],['عمّان',25],['القاهرة',20],['بغداد',15],['دمشق',10]]},
+{text:'اذكر اسم علم لمدينة أردنية',explanation:'عمّان، إربد، الزرقاء: أعلام لمدن أردنية.',answers:[['عمّان',30],['إربد',25],['الزرقاء',20],['العقبة',15],['جرش',10]]},
+{text:'اذكر اسم علم لدولة غير عربية',explanation:'تركيا، اليابان، فرنسا: أعلام لدول.',answers:[['تركيا',30],['اليابان',25],['فرنسا',20],['الصين',15],['ألمانيا',10]]},
+{text:'اذكر اسم علم لمدينة فلسطينية',explanation:'القدس، غزة، الخليل: أعلام لمدن فلسطينية.',answers:[['القدس',30],['غزة',25],['الخليل',20],['نابلس',15],['رام الله',10]]},
+{text:'اذكر اسم علم لدولة عربية في آسيا',explanation:'الأردن، فلسطين، السعودية: أعلام لدول عربية في آسيا.',answers:[['الأردن',30],['فلسطين',25],['السعودية',20],['العراق',15],['سوريا',10]]},
+{text:'اذكر اسم علم لدولة عربية في أفريقيا',explanation:'مصر، المغرب، الجزائر: أعلام لدول عربية في أفريقيا.',answers:[['مصر',30],['المغرب',25],['الجزائر',20],['تونس',15],['ليبيا',10]]},
+{text:'اذكر اسم علم لدولة عربية في الخليج',explanation:'السعودية، الكويت، قطر: أعلام لدول خليجية.',answers:[['السعودية',30],['الكويت',25],['قطر',20],['عُمان',15],['الإمارات',10],['البحرين',5]]},
+{text:'اذكر اسم علم لشخص يبدأ بحرف الألف',explanation:'أحمد، أمينة، أسامة: أعلام لأشخاص.',answers:[['أحمد',30],['أمينة',25],['أسامة',20],['إبراهيم',15],['آمنة',10]]},
+{text:'اذكر اسم علم لشخص يبدأ بحرف السين',explanation:'سارة، سعيد، سامي: أعلام لأشخاص.',answers:[['سارة',30],['سعيد',25],['سامي',20],['سلمى',15],['سليم',10]]},
+{text:'اذكر اسم علم لشخص يبدأ بحرف العين',explanation:'عمر، علي، عائشة: أعلام لأشخاص.',answers:[['عمر',30],['علي',25],['عائشة',20],['عبد الله',15],['عادل',10]]},
+{text:'اذكر اسم علم لمدينة أردنية جنوبية',explanation:'العقبة، الكرك، معان: أعلام لمدن أردنية.',answers:[['العقبة',30],['الكرك',25],['معان',20],['الطفيلة',15]]},
+{text:'اذكر اسم علم لأنثى يبدأ بحرف الميم',explanation:'مريم، منى، مها: أعلام لإناث.',answers:[['مريم',30],['منى',25],['مها',20],['ميس',15],['ملك',10]]},
+{text:'اذكر اسم علم لذكر يبدأ بحرف الميم',explanation:'محمد، محمود، ماجد: أعلام لذكور.',answers:[['محمد',30],['محمود',25],['ماجد',20],['مصطفى',15],['مازن',10]]}],
+'أسماء الإشارة':[
+{text:'اذكر اسم إشارة للقريب',explanation:'هذا للمفرد المذكر، هذه للمفرد المؤنث، هذان للمثنى المذكر، هاتان للمثنى المؤنث، هؤلاء للجمع.',answers:[['هذا',30],['هذه',25],['هؤلاء',20],['هذان',15],['هاتان',10]]},
+{text:'اذكر اسم إشارة تقوله عند الإشارة إلى شيء قريب',explanation:'أسماء الإشارة للقريب: هذا، هذه، هذان، هاتان، هؤلاء.',answers:[['هذا',30],['هذه',25],['هذان',20],['هاتان',15],['هؤلاء',10]]},
+{text:'اذكر اسم إشارة للقريب من أسماء الإشارة الخمسة',explanation:'هذا، هذه، هذان، هاتان، هؤلاء.',answers:[['هؤلاء',30],['هذا',25],['هذه',20],['هاتان',15],['هذان',10]]},
+{text:'اذكر اسم إشارة للقريب يبدأ بحرف الهاء',explanation:'أسماء الإشارة للقريب كلها تبدأ بالهاء: هذا، هذه، هذان، هاتان، هؤلاء.',answers:[['هذا',30],['هذان',25],['هذه',20],['هؤلاء',15],['هاتان',10]]},
+{text:'اذكر اسم إشارة للقريب يدل على مفرد أو مثنى',explanation:'للمفرد: هذا، هذه. وللمثنى: هذان، هاتان.',answers:[['هذا',40],['هذه',30],['هذان',20],['هاتان',10]]},
+{text:'اذكر اسم إشارة للقريب يدل على مثنى أو جمع',explanation:'للمثنى: هذان، هاتان. وللجمع: هؤلاء.',answers:[['هذان',40],['هاتان',35],['هؤلاء',25]]},
+{text:'ما اسم الإشارة الذي تقوله عند الإشارة إلى شيء قريب؟',explanation:'هذا، هذه، هذان، هاتان، هؤلاء.',answers:[['هؤلاء',30],['هذه',25],['هذا',20],['هذان',15],['هاتان',10]]}],
+'الأسماء الموصولة':[
+{text:'اذكر اسمًا موصولًا',explanation:'الأسماء الموصولة: الذي، التي، اللذان، اللتان، اللواتي، الذين.',answers:[['الذي',30],['التي',25],['الذين',20],['اللذان',15],['اللتان',10],['اللواتي',5]]},
+{text:'اذكر اسمًا موصولًا من الأسماء الموصولة الستة',explanation:'الذي، التي، اللذان، اللتان، اللواتي، الذين.',answers:[['الذين',30],['اللواتي',25],['التي',20],['الذي',15],['اللذان',10],['اللتان',5]]},
+{text:'اذكر اسمًا موصولًا للمذكر',explanation:'للمذكر: الذي (مفرد)، اللذان (مثنى)، الذين (جمع).',answers:[['الذي',40],['اللذان',35],['الذين',25]]},
+{text:'اذكر اسمًا موصولًا للمؤنث',explanation:'للمؤنث: التي (مفرد)، اللتان (مثنى)، اللواتي (جمع).',answers:[['التي',40],['اللتان',35],['اللواتي',25]]},
+{text:'اذكر اسمًا موصولًا للمفرد أو المثنى',explanation:'للمفرد: الذي، التي. وللمثنى: اللذان، اللتان.',answers:[['الذي',40],['التي',30],['اللذان',20],['اللتان',10]]},
+{text:'اذكر اسمًا موصولًا للمثنى أو الجمع',explanation:'للمثنى: اللذان، اللتان. وللجمع: الذين، اللواتي.',answers:[['الذين',40],['اللذان',30],['اللتان',20],['اللواتي',10]]},
+{text:'اذكر اسمًا موصولًا ينتهي بحرف النون',explanation:'اللذان، اللتان، الذين: تنتهي بالنون.',answers:[['الذين',40],['اللذان',35],['اللتان',25]]},
+{text:'اذكر اسمًا موصولًا يربط الجملة بما قبلها',explanation:'الذي، التي، اللذان، اللتان، اللواتي، الذين.',answers:[['الذي',30],['التي',25],['اللذان',20],['اللتان',15],['الذين',10],['اللواتي',5]]},
+{text:'اذكر اسمًا موصولًا للمفرد أو الجمع',explanation:'للمفرد: الذي، التي. وللجمع: الذين، اللواتي.',answers:[['الذي',40],['التي',30],['الذين',20],['اللواتي',10]]}],
+'الضمائر المنفصلة':[
+{text:'اذكر ضميرًا منفصلًا',explanation:'للمتكلم: أنا، نحن. وللمخاطب: أنتَ... وللغائب: هو، هي...',answers:[['أنا',30],['هو',25],['نحن',20],['أنتَ',15],['هي',10],['هم',5]]},
+{text:'اذكر ضميرًا منفصلًا للمخاطب',explanation:'ضمائر المخاطب: أنتَ، أنتِ، أنتما، أنتم، أنتنّ.',answers:[['أنتَ',30],['أنتِ',25],['أنتم',20],['أنتما',15],['أنتنّ',10]]},
+{text:'اذكر ضميرًا منفصلًا للغائب',explanation:'ضمائر الغائب: هو، هي، هما، هم، هنّ.',answers:[['هو',30],['هي',25],['هم',20],['هما',15],['هنّ',10]]},
+{text:'اذكر ضميرًا منفصلًا للمتكلم أو المخاطب',explanation:'للمتكلم: أنا، نحن. وللمخاطب: أنتَ، أنتِ، أنتما، أنتم، أنتنّ.',answers:[['أنا',30],['نحن',25],['أنتَ',20],['أنتِ',15],['أنتم',10],['أنتما',5],['أنتنّ',5]]},
+{text:'اذكر ضميرًا منفصلًا للمتكلم أو الغائب',explanation:'للمتكلم: أنا، نحن. وللغائب: هو، هي، هما، هم، هنّ.',answers:[['أنا',30],['هو',25],['نحن',20],['هي',15],['هم',10],['هما',5],['هنّ',5]]},
+{text:'اذكر ضميرًا منفصلًا للمفرد',explanation:'للمفرد: أنا، أنتَ، أنتِ، هو، هي.',answers:[['أنا',30],['أنتَ',25],['أنتِ',20],['هو',15],['هي',10]]},
+{text:'اذكر ضميرًا منفصلًا للجمع',explanation:'للجمع: نحن، أنتم، هم، أنتنّ، هنّ.',answers:[['نحن',30],['أنتم',25],['هم',20],['أنتنّ',15],['هنّ',10]]},
+{text:'اذكر ضميرًا منفصلًا يبدأ بحرف الهاء',explanation:'ضمائر الغائب تبدأ بالهاء: هو، هي، هما، هم، هنّ.',answers:[['هو',30],['هي',25],['هم',20],['هما',15],['هنّ',10]]},
+{text:'اذكر ضميرًا منفصلًا يبدأ بالهمزة',explanation:'ضمائر تبدأ بالهمزة: أنا، أنتَ، أنتِ، أنتم، أنتما، أنتنّ.',answers:[['أنا',30],['أنتَ',25],['أنتِ',20],['أنتم',15],['أنتما',10],['أنتنّ',5]]},
+{text:'اذكر ضميرًا منفصلًا للمخاطب أو الغائب المفرد',explanation:'للمخاطب: أنتَ، أنتِ. وللغائب: هو، هي.',answers:[['أنتَ',40],['هو',30],['أنتِ',20],['هي',10]]},
+{text:'اذكر ضميرًا منفصلًا للمخاطب أو الغائب في الجمع',explanation:'للمخاطب: أنتم، أنتنّ. وللغائب: هم، هنّ.',answers:[['أنتم',40],['هم',30],['أنتنّ',20],['هنّ',10]]},
+{text:'اذكر ضميرًا منفصلًا ينتهي بحرف النون',explanation:'نحن، أنتنّ، هنّ: تنتهي بالنون.',answers:[['نحن',40],['أنتنّ',35],['هنّ',25]]},
+{text:'اذكر ضميرًا منفصلًا ينتهي بحرف الألف',explanation:'أنا، أنتما، هما: تنتهي بالألف.',answers:[['أنا',40],['أنتما',35],['هما',25]]},
+{text:'اذكر ضميرًا منفصلًا يدل على أكثر من واحد',explanation:'نحن، أنتما، أنتم، أنتنّ، هما، هم، هنّ.',answers:[['نحن',30],['أنتم',25],['هم',20],['أنتما',15],['هما',10],['أنتنّ',5],['هنّ',5]]}]};
+const Q=Object.entries(BANK).flatMap(([l,a])=>a.map(x=>({...x,l})));
+const cq=s=>Q[s.qs?s.qs[s.qi]:0];
+const banned=()=>{try{return JSON.parse(localStorage.getItem('fikr-banned')||'[]')}catch(e){return[]}};
+function banQ(t){try{const b=banned();if(!b.includes(t)){b.push(t);localStorage.setItem('fikr-banned',JSON.stringify(b))}}catch(e){}}
+function pick(n){const bn=banned(),a=Q.map((_,i)=>i).filter(i=>!bn.includes(Q[i].text));for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}
+ const cap=Math.ceil(n/new Set(Q.map(q=>q.l)).size),cnt={},o=[];
+ while(o.length<n&&a.length){let k=a.findIndex(i=>(cnt[Q[i].l]||0)<cap&&(!o.length||Q[i].l!==Q[o.at(-1)].l));if(k<0)k=a.findIndex(i=>(cnt[Q[i].l]||0)<cap);if(k<0)k=0;const i=a.splice(k,1)[0];cnt[Q[i].l]=(cnt[Q[i].l]||0)+1;o.push(i)}return o}
+const other=t=>1-t,mult=s=>s.qi===s.nr-1&&s.nr>2?3:s.qi>=2?2:1;
+const init=()=>({teams:[{n:'الفريق الأول',c:'#0756C9',score:0},{n:'الفريق الثاني',c:'#FFB629',score:0}],nr:6,rosters:[[],[]],used:[[],[]],reps:null,extra:[],snd:true,qs:null,qi:0,revealed:[],pot:0,turn:0,strikes:0,phase:'lobby',fo:null,fm:null,ev:'',hist:[],v:0});
+function award(s,t){const g=s.pot*mult(s);const teams=s.teams.map((x,i)=>i===t?{...x,score:x.score+g}:x);return{...s,teams,turn:t,phase:'roundEnd',ev:`${teams[t].n} يحصل على ${g} ${g>=3&&g<=10?'نقاط':'نقطة'}`}}
+const ALT=5;
+function pickReps(s){const used=s.used.map(x=>[...x]),reps=[null,null];[0,1].forEach(t=>{const nm=s.rosters[t];if(!nm.length)return;let pool=nm.filter(x=>!used[t].includes(x));if(!pool.length){used[t]=[];pool=nm}const r=pool[Math.random()*pool.length|0];used[t].push(r);reps[t]=r});return{reps:reps[0]||reps[1]?reps:null,used}}
+function reduce(s,a){
+ if(a.type==='reset')return init();
+ if(a.type==='undo')return s.hist.length?{...s.hist.at(-1),hist:s.hist.slice(0,-1),v:s.v+1}:s;
+ if(a.type==='snd')return{...s,snd:!s.snd,v:s.v+1};
+ const q=cq(s),snap={...s,hist:[]};let n=s;
+ switch(a.type){
+ case 'start':if(s.phase!=='lobby')return s;n={...s,...pickReps(s),extra:[],qs:pick(Math.min(s.nr,Q.length)),phase:'faceoff',fo:{first:0,ans:0,rank:null},ev:`المواجهة: يبدأ ${s.teams[0].n}`};break;
+ case 'names':if(s.phase!=='lobby')return s;n={...s,teams:s.teams.map((x,i)=>({...x,n:(i?a.b:a.a)||x.n}))};break;
+ case 'rounds':if(s.phase!=='lobby')return s;n={...s,nr:a.n};break;
+ case 'swap':{if(!['faceoff','play'].includes(s.phase)||s.revealed.length||s.extra.length)return s;
+  const cur=s.qs[s.qi],bn=banned();if(a.ban)banQ(Q[cur].text);
+  const c=Q.map((_,i)=>i).filter(i=>!s.qs.includes(i)&&!bn.includes(Q[i].text)&&Q[i].text!==Q[cur].text);
+  const same=c.filter(i=>Q[i].l===Q[cur].l),diff=c.filter(i=>Q[i].l!==Q[cur].l),want=a.same?same:diff,pool=want.length?want:c;if(!pool.length)return s;
+  const qs=[...s.qs];qs[s.qi]=pool[Math.random()*pool.length|0];
+  n={...s,qs,strikes:0,fo:s.phase==='faceoff'?{first:s.fo.first,ans:s.fo.first,rank:null}:s.fo,ev:'تم تغيير السؤال'};break}
+ case 'roster':if(s.phase!=='lobby')return s;n={...s,rosters:[a.a,a.b],used:[[],[]]};break;
+ case 'reps':if(s.phase!=='faceoff')return s;n={...s,...pickReps(s)};break;
+ case 'alt':{const tt=(a.text||'').trim();if(!tt||!['faceoff','play','steal'].includes(s.phase)||s.extra.some(e=>e.t===tt)||q.answers.some(x=>x[0]===tt))return s;
+  const extra=[...s.extra,{t:tt}];
+  if(s.phase==='faceoff'){const fo=s.fo,L=q.answers.length;let win=null,nf={...fo};
+   if(fo.rank===null)nf={...fo,rank:L,ans:other(fo.ans)};else win=L<fo.rank?fo.ans:other(fo.ans);
+   const pot=s.pot+ALT;
+   n=win!==null?{...s,extra,pot,fo:null,turn:win,phase:'decide',ev:`${s.teams[win].n} يفوز بالمواجهة`}:{...s,extra,pot,fo:nf,ev:'سُجّلت الإجابة، والدور للفريق الآخر'}}
+  else if(s.phase==='play')n={...s,extra,pot:s.pot+ALT,ev:'قُبلت إجابة بديلة'};
+  else n=award({...s,extra},other(s.turn));
+  break}
+ case 'buzz':if(s.phase!=='faceoff'||s.fo.first!==null)return s;n={...s,fo:{first:a.t,ans:a.t,rank:null},ev:`الجرس: ${s.teams[a.t].n}`};break;
+ case 'reveal':case 'strike':{
+  const rv=a.type==='reveal';
+  if(rv&&(s.revealed.includes(a.i)||!q.answers[a.i]))return s;
+  if(s.phase==='faceoff'){const fo=s.fo;if(fo.first===null)return s;
+   let win=null,nf={...fo};
+   if(fo.rank===null){ // الإجابة الأولى
+     if(rv&&a.i===0)win=fo.ans;else nf={...fo,rank:rv?a.i:99,ans:other(fo.ans),second:true};
+   }else{ // الثانية
+     if(rv)win=a.i<fo.rank?fo.ans:other(fo.ans);else win=fo.rank<99?other(fo.ans):null;
+   }
+   let r=rv?[...s.revealed,a.i]:s.revealed,pot=rv?s.pot+q.answers[a.i][1]:s.pot;
+   if(win!==null)n={...s,revealed:r,pot,fo:null,turn:win,phase:'decide',ev:`${s.teams[win].n} يفوز بالمواجهة`};
+   else if(rv||fo.rank===null)n={...s,revealed:r,pot,fo:nf,strikes:0,ev:rv?'سُجّلت الإجابة، والدور للفريق الآخر':'خطأ! الدور للفريق الآخر',x:!rv};
+   else n={...s,fo:{first:fo.first,ans:fo.first,rank:null},ev:'أخطأ الفريقان: تُعاد المواجهة',x:true};
+   break}
+  if(s.phase==='play'){
+   if(rv){const revealed=[...s.revealed,a.i],pot=s.pot+q.answers[a.i][1];n={...s,revealed,pot};if(revealed.length===q.answers.length)n=award(n,s.turn)}
+   else{const st=s.strikes+1;n=st>=3?{...s,strikes:st,phase:'steal',ev:`فرصة السرقة: ${s.teams[other(s.turn)].n}`}:{...s,strikes:st}}
+   break}
+  if(s.phase==='steal'){
+   if(rv){n=award({...s,revealed:[...s.revealed,a.i]},other(s.turn))}else n=award(s,s.turn);break}
+  return s}
+ case 'decide':if(s.phase!=='decide')return s;n={...s,phase:'play',turn:a.play?s.turn:other(s.turn),ev:`الدور: ${s.teams[a.play?s.turn:other(s.turn)].n}`};break;
+ case 'next':{if(s.phase!=='roundEnd')return s;
+  const t=s.teams,lead=t[0].score>=t[1].score?0:1;
+  if(s.qi+1>=s.nr)n={...s,phase:'end',ev:'انتهت المسابقة'};
+  else n={...s,...pickReps(s),extra:[],qi:s.qi+1,revealed:[],pot:0,strikes:0,phase:'faceoff',fo:{first:(s.qi+1)%2,ans:(s.qi+1)%2,rank:null},ev:`المواجهة: يبدأ ${s.teams[(s.qi+1)%2].n}`};break}
+ default:return s}
+ return{...n,hist:[...s.hist.slice(-19),snap],v:s.v+1}}
+let s=init(),sure=false,prev={open:[],k:0,ph:'',ex:0};
+let ctx;function tone(f,t,d,ty){ctx=ctx||new(window.AudioContext||window.webkitAudioContext)();ctx.resume();const o=ctx.createOscillator(),g=ctx.createGain();o.type=ty||'sine';o.frequency.value=f;g.gain.setValueAtTime(.15,ctx.currentTime+t);g.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+t+d);o.connect(g).connect(ctx.destination);o.start(ctx.currentTime+t);o.stop(ctx.currentTime+t+d)}
+const snd={reveal:()=>{tone(660,0,.15);tone(880,.1,.2)},x:()=>tone(150,0,.5,'sawtooth'),win:()=>[523,659,784,1046,1318,1046,1318,1568].forEach((f,k)=>{tone(f,k*.16,.3);tone(f/2,k*.16,.3,'triangle')}),intro:()=>[392,392,523,659,784,659,784,1046].forEach((f,k)=>{tone(f,k*.17,.28);tone(f/2,k*.17,.28,'triangle')}),round:()=>[523,659,784,659,784,1046].forEach((f,k)=>tone(f,k*.1,.2))};
+const $=id=>document.getElementById(id);
+const team=(t,i)=>`<aside class="team${s.turn===i&&!['lobby','fm','fmIntro','fmSwap','fmResult','end'].includes(s.phase)?' active':''}" style="--tc:${t.c}"><h3>${t.n}</h3><strong>${t.score}</strong></aside>`;
+function tvHTML(){
+ const logo='<div class="logo"><b>فكّر واربح</b><small>العربية لغتي</small></div>',t=s.teams;
+ if(s.phase==='end'){const w=t[0].score===t[1].score?-1:t[0].score>t[1].score?0:1;
+  return`<div class="endcard">${logo}<div class="win">${w<0?'تعادل':'الفائز'}</div><h1>${w<0?'فريقان بمستوى واحد':t[w].n}</h1><div class="fin">${t.map(x=>`<span style="--tc:${x.c}">${x.n}<b>${x.score}</b></span>`).join('')}</div></div>`}
+ const q=cq(s),last=s.qi===s.nr-1,bank=String(s.pot*mult(s)).padStart(3,'0');
+ const li=[...Array(8)].map((_,i)=>{const a=q.answers[i];if(!a||s.phase==='lobby')return`<li class="empty"><i>${i+1}</i></li>`;const o=s.revealed.includes(i);
+  return o?`<li class="open${prev.open.includes(i)?'':' flip'}"><i>${i+1}</i><span>${a[0]}</span><em>${a[1]}</em></li>`:`<li><i>${i+1}</i></li>`}).join('');
+ const xs=s.strikes>prev.k||s.x?`<div class="x">${s.x?'✕':'✕'.repeat(Math.max(s.strikes,1))}</div>`:'';
+ const tm=(x,i)=>`<aside class="team${s.turn===i&&['faceoff','decide','play','steal','roundEnd'].includes(s.phase)?' active':''}" style="--tc:${x.c}"><h3>${x.n}</h3><strong>${x.score}</strong><small>${s.turn===i&&s.phase==='steal'?'يسرق':s.turn===i&&['play','decide'].includes(s.phase)?'الدور':'&nbsp;'}</small></aside>`;
+ if(s.phase==='lobby')return`<div class="endcard" style="grid-column:1/-1">${logo}<div class="win">بانتظار المعلم</div><div class="fin">${t.map(x=>`<span style="--tc:${x.c}">${x.n}</span>`).join('')}</div></div>`;
+const duel=s.reps&&['faceoff','decide'].includes(s.phase)?`<div class="duel"><span style="--tc:${t[0].c}">${s.reps[0]||t[0].n}</span><b>ضد</b><span style="--tc:${t[1].c}">${s.reps[1]||t[1].n}</span></div>`:'',ex=s.extra.length?`<div class="extra">${s.extra.map(e=>`<span>${e.t}<em>+5</em></span>`).join('')}</div>`:'';
+ return`${xs}${tm(t[0],0)}<section class="board"><div class="top"><span class="chip">${last?'الجولة الأخيرة':`الجولة ${s.qi+1} من ${s.nr}`} · ×${mult(s)}</span>${logo}<div class="bank">${bank}</div></div>
+ <p class="q">${q.text}</p>${duel}<ol>${li}</ol>${ex}<div class="sk">${[0,1,2].map(i=>`<b class="${i<s.strikes?'on':''}">✕</b>`).join('')}</div><div class="ev">${s.ev}</div></section>${tm(t[1],1)}`}
+function ctlHTML(){
+ const B=(l,a,c)=>`<button class="${c||''}" data-a='${JSON.stringify(a)}'>${l}</button>`;
+ if(mode==='home')return'<h3>فكّر واربح · العربية لغتي</h3><p>اختر دور هذا الجهاز:</p>'+(isClaude?'':'<input id="rc" placeholder="رمز الغرفة (يُستعمل للشاشة)" value="'+room+'"><input id="pin" type="password" placeholder="رمز المعلم (PIN)" value="'+pin+'">')+'<button class="gold" data-m="control">📱 لوحة المعلم (الهاتف)</button><button data-m="screen">📺 شاشة الصف</button>';
+ const roomInfo=!isClaude&&room?`<p class="room">رمز الغرفة: <b>${room}</b><br><small>رابط الشاشة: ${location.origin}${location.pathname}?room=${room}#screen</small></p>${pinBad?'<input id="pin2" type="password" placeholder="رمز المعلم الصحيح"><button class="wide" data-pin="1">حفظ الرمز وإعادة المحاولة</button>':''}`:'';
+ const altUI='<input id="alt" placeholder="إجابة صحيحة غير مدرجة على اللوحة"><button class="wide" data-alt="1">قبول إجابة بديلة (+5)</button>';
+ const q=cq(s);let h=`<div class="sc">${s.teams.map(x=>`<span style="--tc:${x.c}">${x.n}<b>${x.score}</b></span>`).join('')}</div>${roomInfo}<p>${s.ev}</p>`;
+ const ans=()=>'<div class="ag">'+q.answers.map((a,i)=>`<button ${s.revealed.includes(i)?'disabled':''} data-a='${JSON.stringify({type:'reveal',i})}'>${i+1}. ${a[0]} (${a[1]})</button>`).join('')+'</div>'+B('إجابة خاطئة ✕',{type:'strike'},'red wide');
+ const p=s.phase;
+ if(['faceoff','decide','play','steal','roundEnd'].includes(p)){h+=`<div class="qbox"><small>${q.l}</small>${q.text}</div>`;if(['faceoff','play'].includes(p)&&!s.revealed.length&&!s.extra.length)h+='<div class="ag">'+B('غيّر السؤال (نفس الدرس)',{type:'swap',same:true})+B('غيّر السؤال (درس آخر)',{type:'swap',same:false})+'</div>'+B('غيّره واستبعده نهائيًا من البنك',{type:'swap',same:true,ban:true},'red wide')}
+ if(p==='lobby')h+=`<input id="n0" value="${s.teams[0].n}"><input id="n1" value="${s.teams[1].n}"><button class="wide" data-names="1">حفظ أسماء الفريقين</button><textarea id="r0" rows="3" placeholder="أسماء طلاب ${s.teams[0].n} (اسم في كل سطر)">${s.rosters[0].join('\n')}</textarea><textarea id="r1" rows="3" placeholder="أسماء طلاب ${s.teams[1].n} (اسم في كل سطر)">${s.rosters[1].join('\n')}</textarea><button class="wide" data-roster="1">حفظ أسماء الطلاب (لاختيار المتنافسين عشوائيًا)</button><p>عدد الجولات: ${s.nr} (الأخيرة ×3) · تُختار الأسئلة عشوائيًا من بنك فيه ${Q.length} سؤالًا${banned().length?` (مستبعد منها ${banned().length})`:''}</p>`+[4,6,8,12].map(n=>B(n,{type:'rounds',n},s.nr===n?'gold':'')).join('')+(banned().length?B('استعادة الأسئلة المستبعدة',{type:'unban'}):'')+B('ابدأ المسابقة',{type:'start'},'gold wide');
+ if(p==='faceoff'){h+=(s.reps?`<p>المتنافسان: <b>${s.reps[0]||'—'}</b> ضد <b>${s.reps[1]||'—'}</b></p>`+B('اختيار متنافسين آخرين',{type:'reps'}):'')+`<p>يجيب الآن ممثل <b>${s.teams[s.fo.ans].n}</b></p>`+ans()+altUI}
+ if(p==='decide')h+=`<p>${s.teams[s.turn].n}: العب أم مرّر؟</p>`+B('نلعب',{type:'decide',play:true},'gold')+B('نمرّر للمنافس',{type:'decide',play:false});
+ if(p==='play'||p==='steal')h+=(p==='steal'?'<p>فرصة السرقة: اكشف إجابة صحيحة أو سجّل خطأ.</p>':`<p>الدور: ${s.teams[s.turn].n} · أخطاء ${s.strikes}/3</p>`)+ans()+altUI;
+ if(p==='roundEnd')h+=`<p>${q.explanation}</p>`+B(s.qi+1>=s.nr?'إعلان النتيجة':'السؤال التالي',{type:'next'},'gold wide');
+ if(p==='end'){const t=s.teams,w=t[0].score===t[1].score?-1:t[0].score>t[1].score?0:1;h+=`<div class="big">${w<0?'تعادل':'الفائز: '+t[w].n}</div>`}
+ h+='<hr>'+B('تراجع',{type:'undo'})+B(s.snd?'كتم الصوت':'تشغيل الصوت',{type:'snd'})+(sure?B('تأكيد إعادة الضبط',{type:'reset'},'red')+'<button data-sure="0">إلغاء</button>':'<button data-sure="1">إعادة المسابقة</button>');
+ return h+'<p style="color:var(--gold);margin-top:10px">إعداد المعلم: محمد أبودية</p>'}
+function confetti(){const c=$('cf');c.width=innerWidth;c.height=innerHeight;const g=c.getContext('2d'),P=[...Array(160)].map(()=>({x:Math.random()*c.width,y:-Math.random()*c.height*.6,vx:Math.random()*4-2,vy:2+Math.random()*5,r:4+Math.random()*6,c:['#FFB629','#4da3ff','#fff','#F04452'][Math.random()*4|0],a:Math.random()*6}));let t=0;(function f(){g.clearRect(0,0,c.width,c.height);P.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.a+=.12;g.fillStyle=p.c;g.save();g.translate(p.x,p.y);g.rotate(p.a);g.fillRect(-p.r,-p.r/2,p.r*2,p.r);g.restore()});if(++t<260)requestAnimationFrame(f);else g.clearRect(0,0,c.width,c.height)})()}
+function say(t){try{if(!window.speechSynthesis)return;const u=new SpeechSynthesisUtterance(t);u.lang='ar-SA';u.rate=.95;speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){}}
+function render(){
+ const hadX=s.x;
+ if(mode==='screen'){$('tv').innerHTML=tvHTML();
+  if(s.snd!==false){
+   if(s.revealed.length>prev.open.length||s.extra.length>prev.ex)snd.reveal();
+   if(s.strikes>prev.k||hadX){snd.x();say('إجابة خاطئة')}
+   if(s.phase!==prev.ph){
+    if(s.phase==='faceoff'&&prev.ph==='lobby'){snd.intro();say('أهلًا بكم في فكّر واربح')}
+    else if(s.phase==='faceoff'&&prev.ph==='roundEnd')snd.round();
+    if(s.phase==='steal')say('فرصة السرقة');
+    if(s.phase==='roundEnd')say('أحسنتم');
+    if(s.phase==='end'){snd.win();const t=s.teams;say(t[0].score===t[1].score?'تعادل':'مبروك للفريق '+t[t[0].score>t[1].score?0:1].n)}}}
+  if(s.phase!==prev.ph&&(s.phase==='roundEnd'||s.phase==='end'))confetti()}
+ else $('ctl').innerHTML=ctlHTML();
+ prev={open:[...s.revealed],k:s.strikes,ph:s.phase,ex:s.extra.length};s={...s,x:false}}
+const isClaude=!!(window.claude&&window.claude.use),API='/api/state';
+const rid=()=>Math.random().toString(36).slice(2,8).toUpperCase(),lines=v=>v.split(/\n/).map(x=>x.trim()).filter(Boolean);
+let mode=location.hash==='#screen'?'screen':location.hash==='#control'?'control':'home',tx=null,connected=false,first=true,room='',pin='',pinBad=false;
+try{pin=localStorage.getItem('fikr-pin')||''}catch(e){}
+const savePin=v=>{pin=v.trim();try{localStorage.setItem('fikr-pin',pin)}catch(e){}};
+try{room=(new URLSearchParams(location.search).get('room')||localStorage.getItem('fikr-room')||'').toUpperCase()}catch(e){}
+const snapshot=()=>JSON.stringify({...s,hist:[]});
+function setMode(m){mode=m;document.body.className='m-'+m;$('sbtn').style.display=m==='screen'?'block':'none';
+ if(m==='control'&&!isClaude&&!room){room=rid()}try{if(room)localStorage.setItem('fikr-room',room)}catch(e){}render();connect()}
+function note(t){$('msg').textContent=t}
+function applyRemote(st){if(mode==='control'&&!first)return;try{s={...init(),...JSON.parse(st)};first=false;render();note('')}catch(e){}}
+function dispatch(a){s=reduce(s,a);const st=snapshot();render();
+ try{if(!isClaude)localStorage.setItem('fikr-state-'+room,JSON.stringify(s))}catch(e){}
+ if(tx)tx.send(st);else note('المزامنة غير متاحة')}
+async function connect(){if(connected)return;
+ if(isClaude){connected=true;try{const db=await claude.use('db');if(db){const ref=db.doc('game/current');tx={send:st=>ref.set({state:st}).catch(e=>note('تعذّر الحفظ: '+e.message))};ref.onSnapshot(sn=>{if(sn.exists)applyRemote(sn.data().state);else render()},e=>note('انقطع الاتصال: '+e.message));return}}catch(e){}note('المزامنة غير متاحة: افتح الصفحة وأنت مسجّل الدخول');return}
+ if(mode==='home')return;connected=true;
+ if(mode==='control'){try{const sv=localStorage.getItem('fikr-state-'+room);if(sv){s={...init(),...JSON.parse(sv)};render()}}catch(e){}}
+ if(location.protocol.startsWith('http')){
+  const q='?room='+encodeURIComponent(room);let since=0,sending=false,pending=null;
+  const push=async()=>{if(sending)return;sending=true;while(pending){const st=pending;pending=null;
+   try{const r=await fetch(API+q,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({pin,state:st})});
+    if(r.status===401){pinBad=true;note('رمز المعلم غير صحيح');render()}else if(!r.ok)note('تعذّر الحفظ ('+r.status+')');else{pinBad=false;note('')}}
+   catch(e){note('انقطع الاتصال، تتم إعادة المحاولة…');pending=pending||st;await new Promise(z=>setTimeout(z,2000))}}sending=false};
+  tx={send:st=>{pending=st;push()}};
+  const get=async()=>{const r=await fetch(API+q+'&since='+since,{cache:'no-store'});if(!r.ok)throw new Error(r.status);return r.json()};
+  if(mode==='control'){try{const d=await get();if(d.state){since=d.t;applyRemote(d.state)}}catch(e){note('انقطع الاتصال')}}
+  if(mode==='screen'){const poll=async()=>{try{const d=await get();if(d.state&&d.t!==since){since=d.t;applyRemote(d.state)}note('')}catch(e){note('انقطع الاتصال، تتم إعادة المحاولة…')}setTimeout(poll,1500)};poll()}
+ }
+ else{const bc=new BroadcastChannel('fikr-'+(room||'local'));tx={send:st=>bc.postMessage({t:'state',st}),req:()=>bc.postMessage({t:'req'})};
+  bc.onmessage=e=>{if(e.data.t==='state'&&mode==='screen')applyRemote(e.data.st);if(e.data.t==='req'&&mode==='control')bc.postMessage({t:'state',st:snapshot()})};
+  note('وضع محلي: يعمل بين نافذتين على نفس الجهاز والمتصفح فقط. لربط الهاتف بالشاشة انشر المشروع على Netlify (انظر README).')}
+ if(mode==='screen')setInterval(()=>tx&&tx.req&&tx.req(),8000)}
+$('sbtn').onclick=()=>{try{tone(660,0,.1)}catch(e){}document.documentElement.requestFullscreen?.().catch(()=>{});$('sbtn').style.display='none'};
+$('ctl').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+ if(b.dataset.names)return dispatch({type:'names',a:$('n0').value,b:$('n1').value});
+ if(b.dataset.roster)return dispatch({type:'roster',a:lines($('r0').value),b:lines($('r1').value)});
+ if(b.dataset.alt){const t=$('alt').value;if(t.trim())dispatch({type:'alt',text:t});return}
+ if(b.dataset.pin){savePin($('pin2').value);pinBad=false;if(tx)tx.send(snapshot());return render()}
+ if(b.dataset.m){if(b.dataset.m==='control'&&$('pin'))savePin($('pin').value);if(b.dataset.m==='screen'&&!isClaude&&$('rc')&&$('rc').value.trim())room=$('rc').value.trim().toUpperCase();return setMode(b.dataset.m)}
+ if(b.dataset.sure!==undefined){sure=b.dataset.sure==='1';return render()}
+ if(b.dataset.a){sure=false;const a=JSON.parse(b.dataset.a);if(a.type==='unban'){try{localStorage.removeItem('fikr-banned')}catch(e){}return render()}dispatch(a)}});
+setMode(mode);connect();
+</script></body></html>
