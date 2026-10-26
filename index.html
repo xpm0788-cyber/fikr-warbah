@@ -51,8 +51,29 @@ input{font:inherit;font-weight:800;padding:12px;border-radius:12px;border:2px so
 .extra{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}.extra span{background:linear-gradient(#7be3a1,#2eb872);color:#032;border-radius:10px;padding:2px 14px;font-size:1.3rem}.extra em{font-style:normal;margin-inline-start:8px;background:#032;color:#7be3a1;border-radius:6px;padding:0 8px}
 .qbox{background:#000a;border:2px solid var(--gold);border-radius:14px;padding:10px;margin:6px 0;font-size:1.3rem;line-height:1.5}.qbox small{display:block;color:var(--gold);font-size:.85rem}.room{background:#0006;border-radius:12px;padding:8px;word-break:break-all;font-size:.95rem}
 textarea{font:inherit;font-weight:800;padding:10px;border-radius:12px;border:2px solid #4da3ff55;background:#030b1c;color:#fff;width:100%;margin:4px 0}
+.credit{display:none}.m-screen .credit{display:block;position:fixed;bottom:.8vh;left:0;right:0;text-align:center;color:var(--gold);font-size:2.4vh;text-shadow:0 0 12px #000;z-index:5;pointer-events:none}
+.m-screen .wrap{padding-bottom:5vh}.m-screen #msg{position:fixed;top:0;left:0;right:0;z-index:40;font-size:2vh}
+@media(min-width:901px){
+body.m-screen{height:100vh;height:100dvh;overflow:hidden}
+.m-screen .wrap{height:100%;padding:1.2vh 1.5vw 5vh;grid-template-rows:minmax(0,1fr)}
+.m-screen .stage{height:100%;min-height:0;gap:1.5vw}
+.m-screen .board{margin:1.4vh .8vw;height:calc(100% - 2.8vh);min-height:0;padding:1.2vh 1.4vw;gap:1.1vh;border-radius:2.5vh}
+.m-screen .board::before{inset:-1.4vh;border-width:.5vh;border-radius:3.2vh}
+.m-screen .team{margin:1.4vh 0;padding:1vh .5vw;gap:.8vh;border-radius:3vh}
+.m-screen .team h3{font-size:3.4vh}.m-screen .team strong{font-size:10vh}.m-screen .team small{font-size:2.3vh}
+.m-screen .logo b{font-size:5.6vh}.m-screen .logo small{font-size:1.8vh;letter-spacing:.8vh}
+.m-screen .bank{font-size:7.4vh;padding:0 2vw;border-radius:2vh;border-width:.4vh}.m-screen .chip{font-size:2.4vh}
+.m-screen .q{font-size:4.4vh;padding:.8vh 2vw}
+.m-screen ol{min-height:0;gap:1.2vh 1.2vw}.m-screen li{font-size:3.6vh;min-height:0;padding:0 1.2vw;border-radius:2vh}
+.m-screen li i{font-size:3.2vh}.m-screen li:not(.open) i{font-size:5.4vh}.m-screen li.open em{font-size:3.6vh}
+.m-screen .sk b{width:7vh;height:7vh;font-size:5vh}.m-screen .ev{font-size:2.6vh;min-height:0}
+.m-screen .duel{font-size:3.6vh}.m-screen .extra span{font-size:2.8vh}
+.m-screen .x{font-size:60vh;-webkit-text-stroke:1.2vh #fff}
+.m-screen .endcard{padding:6vh 1vw}.m-screen .endcard h1{font-size:14vh}.m-screen .endcard .win{font-size:6vh}.m-screen .fin span{font-size:3.6vh}.m-screen .fin b{font-size:9vh}
+}
+
 @media(max-width:900px){.stage{grid-template-columns:1fr 1fr}.board{grid-column:1/-1;order:-1}ol{grid-template-columns:1fr;grid-auto-flow:row;grid-template-rows:none}.x{font-size:10rem}.team strong{font-size:3rem}.q{font-size:1.4rem}.bank{font-size:2.4rem}.endcard h1{font-size:3.4rem}}
-</style></head><body><div id="msg" style="text-align:center;color:var(--wrong);font-size:.9rem"></div><div class="wrap"><div class="stage" id="tv"></div><div class="ctl" id="ctl"></div></div><canvas id="cf" style="position:fixed;inset:0;pointer-events:none;z-index:20"></canvas><button id="sbtn" class="gold" style="position:fixed;bottom:10px;left:10px;display:none;z-index:9">🔊 تفعيل الصوت وملء الشاشة</button>
+</style></head><body><div id="msg" style="text-align:center;color:var(--wrong);font-size:.9rem"></div><div class="wrap"><div class="stage" id="tv"></div><div class="ctl" id="ctl"></div></div><div class="credit">إعداد المعلم: محمد أبودية</div><canvas id="cf" style="position:fixed;inset:0;pointer-events:none;z-index:20"></canvas><button id="sbtn" class="gold" style="position:fixed;bottom:10px;left:10px;display:none;z-index:9">🔊 تفعيل الصوت وملء الشاشة</button>
 <script>
 const M=[1,1,2,3],TARGET=300;
 // بنك الأسئلة: النقاط تعليمية وليست نتائج استطلاع
@@ -308,9 +329,9 @@ async function connect(){if(connected)return;
     if(r.status===401){pinBad=true;note('رمز المعلم غير صحيح');render()}else if(!r.ok)note('تعذّر الحفظ ('+r.status+')');else{pinBad=false;note('')}}
    catch(e){note('انقطع الاتصال، تتم إعادة المحاولة…');pending=pending||st;await new Promise(z=>setTimeout(z,2000))}}sending=false};
   tx={send:st=>{pending=st;push()}};
-  const get=async()=>{const r=await fetch(API+q+'&since='+since,{cache:'no-store'});if(!r.ok)throw new Error(r.status);return r.json()};
+  const get=async(wait)=>{const ac=new AbortController(),tm=setTimeout(()=>ac.abort(),wait?12000:8000);try{const r=await fetch(API+q+'&since='+since+(wait?'&wait=1':''),{cache:'no-store',signal:ac.signal});if(!r.ok)throw new Error(r.status);return await r.json()}finally{clearTimeout(tm)}};
   if(mode==='control'){try{const d=await get();if(d.state){since=d.t;applyRemote(d.state)}}catch(e){note('انقطع الاتصال')}}
-  if(mode==='screen'){const poll=async()=>{try{const d=await get();if(d.state&&d.t!==since){since=d.t;applyRemote(d.state)}note('')}catch(e){note('انقطع الاتصال، تتم إعادة المحاولة…')}setTimeout(poll,1500)};poll()}
+  if(mode==='screen'){const poll=async()=>{let ok=true;try{const d=await get(true);if(d.state&&d.t!==since){since=d.t;applyRemote(d.state)}note('')}catch(e){ok=false;note('انقطع الاتصال، تتم إعادة المحاولة…')}setTimeout(poll,ok?0:1500)};poll()}
  }
  else{const bc=new BroadcastChannel('fikr-'+(room||'local'));tx={send:st=>bc.postMessage({t:'state',st}),req:()=>bc.postMessage({t:'req'})};
   bc.onmessage=e=>{if(e.data.t==='state'&&mode==='screen')applyRemote(e.data.st);if(e.data.t==='req'&&mode==='control')bc.postMessage({t:'state',st:snapshot()})};
@@ -321,7 +342,7 @@ $('ctl').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)r
  if(b.dataset.names)return dispatch({type:'names',a:$('n0').value,b:$('n1').value});
  if(b.dataset.roster)return dispatch({type:'roster',a:lines($('r0').value),b:lines($('r1').value)});
  if(b.dataset.alt){const t=$('alt').value;if(t.trim())dispatch({type:'alt',text:t});return}
- if(b.dataset.pin){savePin($('pin2').value);pinBad=false;if(tx)tx.send(snapshot());return render()}
+  if(b.dataset.pin){savePin($('pin2').value);pinBad=false;if(tx)tx.send(snapshot());return render()}
  if(b.dataset.m){if(b.dataset.m==='control'&&$('pin'))savePin($('pin').value);if(b.dataset.m==='screen'&&!isClaude&&$('rc')&&$('rc').value.trim())room=$('rc').value.trim().toUpperCase();return setMode(b.dataset.m)}
  if(b.dataset.sure!==undefined){sure=b.dataset.sure==='1';return render()}
  if(b.dataset.a){sure=false;const a=JSON.parse(b.dataset.a);if(a.type==='unban'){try{localStorage.removeItem('fikr-banned')}catch(e){}return render()}dispatch(a)}});
