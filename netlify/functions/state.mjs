@@ -1,19 +1,26 @@
-// دالة Netlify: تحفظ حالة المسابقة في Netlify Blobs لكل غرفة، وتقرؤها شاشة الصف.
+// دالة Netlify: تحفظ حالة المسابقة لكل غرفة (Netlify Blobs) وتقرؤها شاشة الصف.
+// القراءة تنتظر التغيير (long polling) فتصل تحديثات الهاتف إلى الشاشة خلال أجزاء من الثانية.
 import { getStore } from '@netlify/blobs';
+
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 export default async (req) => {
   const url = new URL(req.url);
   const room = (url.searchParams.get('room') || '').toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 12);
   if (!room) return new Response('room required', { status: 400 });
-  const store = getStore('fikr-rooms');
+  // consistency: strong => القراءة تُرجع آخر نسخة مكتوبة دائمًا (الافتراضي قد يتأخر ثوانيَ)
+  const store = getStore({ name: 'fikr-rooms', consistency: 'strong' });
   const headers = { 'content-type': 'application/json', 'cache-control': 'no-store' };
 
   if (req.method === 'GET') {
-    const saved = await store.get(room, { type: 'json' });
-    if (!saved) return new Response('{}', { headers });
     const since = Number(url.searchParams.get('since') || 0);
-    if (since === saved.t) return new Response(JSON.stringify({ t: saved.t }), { headers });
-    return new Response(JSON.stringify(saved), { headers });
+    const deadline = Date.now() + (url.searchParams.get('wait') === '1' ? 7000 : 0);
+    for (;;) {
+      const saved = await store.get(room, { type: 'json' });
+      if (saved && saved.t !== since) return new Response(JSON.stringify(saved), { headers });
+      if (Date.now() >= deadline) return new Response(JSON.stringify(saved ? { t: saved.t } : {}), { headers });
+      await sleep(250);
+    }
   }
 
   if (req.method === 'POST') {
