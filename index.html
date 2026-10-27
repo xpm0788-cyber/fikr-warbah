@@ -72,8 +72,11 @@ body.m-screen{height:100vh;height:100dvh;overflow:hidden}
 .m-screen .endcard{padding:6vh 1vw}.m-screen .endcard h1{font-size:14vh}.m-screen .endcard .win{font-size:6vh}.m-screen .fin span{font-size:3.6vh}.m-screen .fin b{font-size:9vh}
 }
 
+.tm{min-width:64px;height:64px;border-radius:50%;border:4px solid var(--gold);display:grid;place-items:center;font-family:Lalezar,sans-serif;font-size:2.2rem;background:#000a;color:var(--gold);text-shadow:0 0 12px var(--gold)}
+.tm.low{border-color:var(--wrong);color:var(--wrong);text-shadow:0 0 12px var(--wrong);animation:tmp .6s infinite}@keyframes tmp{50%{transform:scale(1.12)}}
+.m-screen .tm{min-width:10vh;height:10vh;font-size:6vh;border-width:.6vh}
 @media(max-width:900px){.stage{grid-template-columns:1fr 1fr}.board{grid-column:1/-1;order:-1}ol{grid-template-columns:1fr;grid-auto-flow:row;grid-template-rows:none}.x{font-size:10rem}.team strong{font-size:3rem}.q{font-size:1.4rem}.bank{font-size:2.4rem}.endcard h1{font-size:3.4rem}}
-</style></head><body><div id="msg" style="text-align:center;color:var(--wrong);font-size:.9rem"></div><div class="wrap"><div class="stage" id="tv"></div><div class="ctl" id="ctl"></div></div><div class="credit">إعداد المعلم: محمد أبودية</div><canvas id="cf" style="position:fixed;inset:0;pointer-events:none;z-index:20"></canvas><button id="sbtn" class="gold" style="position:fixed;bottom:10px;left:10px;display:none;z-index:9">🔊 تفعيل الصوت وملء الشاشة</button>
+</style></head><body><div id="msg" style="text-align:center;color:var(--wrong);font-size:.9rem"></div><div class="wrap"><div class="stage" id="tv"></div><div class="ctl" id="ctl"></div></div><div class="credit">إعداد المعلم: محمد أبودية</div><button id="sbtn" class="gold" style="position:fixed;bottom:10px;left:10px;display:none;z-index:9">🔊 تفعيل الصوت وملء الشاشة</button>
 <script>
 const M=[1,1,2,3],TARGET=300;
 // بنك الأسئلة: النقاط تعليمية وليست نتائج استطلاع
@@ -99,7 +102,14 @@ const BANK={
 {text:'اذكر نكرة تدل على جزء من الشجرة',explanation:'ورقة، غصن، جذع: نكرات لأنها غير معيّنة.',answers:[['ورقة',30],['غصن',25],['جذع',20],['ثمرة',15],['جذر',10]]},
 {text:'اذكر نكرة تدل على شيء في السماء',explanation:'شمس، قمر، نجمة: نكرات لأنها غير معيّنة.',answers:[['شمس',30],['قمر',25],['نجمة',20],['غيمة',15],['طائرة',10]]},
 {text:'اذكر نكرة تدل على مادة دراسية',explanation:'لغة، علوم، رياضيات: نكرات لأنها غير معيّنة.',answers:[['لغة',30],['علوم',25],['رياضيات',20],['تاريخ',15],['جغرافيا',10]]},
-{text:'اذكر نكرة تدل على حيوان أليف',explanation:'قطة، كلب، أرنب: نكرات لأنها غير معيّنة.',answers:[['قطة',30],['كلب',25],['أرنب',20],['ببغاء',15],['سمكة',10]]}],
+{text:'اذكر نكرة تدل على حيوان أليف',explanation:'قطة، كلب، أرنب: نكرات لأنها غير معيّنة.',answers:[['قطة',30],['كلب',25],['أرنب',20],['ببغاء',15],['سمكة',10]]},
+{text:'اذكر نكرة تدل على شيء في الحديقة',explanation:'شجرة، زهرة، عشب: نكرات لأنها غير معيّنة.',answers:[['شجرة',30],['زهرة',25],['عشب',20],['مقعد',15],['ممر',10]]},
+{text:'اذكر نكرة تدل على شيء في المسجد',explanation:'محراب، منارة، سجادة: نكرات لأنها غير معيّنة.',answers:[['محراب',30],['منارة',25],['سجادة',20],['مصحف',15],['قبة',10]]},
+{text:'اذكر نكرة تدل على شيء في المستشفى',explanation:'طبيب، ممرضة، سرير: نكرات لأنها غير معيّنة.',answers:[['طبيب',30],['ممرضة',25],['سرير',20],['دواء',15],['إسعاف',10]]},
+{text:'اذكر نكرة تدل على شيء في السوق',explanation:'بائع، بضاعة، سلة: نكرات لأنها غير معيّنة.',answers:[['بائع',30],['بضاعة',25],['سلة',20],['ميزان',15],['محل',10]]},
+{text:'اذكر نكرة تدل على شيء في المكتبة',explanation:'كتاب، رف، مجلة: نكرات لأنها غير معيّنة.',answers:[['كتاب',30],['رف',25],['مجلة',20],['قصة',15],['طاولة',10]]},
+{text:'اذكر نكرة تدل على فاكهة صيفية',explanation:'بطيخ، عنب، خوخ: نكرات لأنها غير معيّنة.',answers:[['بطيخ',30],['عنب',25],['خوخ',20],['تين',15],['مشمش',10]]},
+{text:'اذكر نكرة تدل على شيء في المدرسة',explanation:'مقصف، ملعب، مختبر: نكرات لأنها غير معيّنة.',answers:[['مقصف',30],['ملعب',25],['مختبر',20],['ساحة',15],['مكتبة',10]]}],
 'المعرفة':[
 {text:'اذكر نوعًا من أنواع المعرفة',explanation:'أنواع المعرفة: اسم العلم، الضمير، اسم الإشارة، الاسم الموصول، المعرّف بأل.',answers:[['اسم العلم',30],['الضمير',25],['اسم الإشارة',20],['الاسم الموصول',15],['المعرّف بأل',10]]},
 {text:'اذكر معرفة غير اسم العلم',explanation:'المعرفة تدل على معيّن: الكتاب (معرّف بأل)، هذا (اسم إشارة)، الذي (اسم موصول)، أنا وهو (ضميران).',answers:[['الكتاب',30],['هذا',25],['الذي',20],['أنا',15],['هو',10]]},
@@ -111,7 +121,11 @@ const BANK={
 {text:'اذكر معرفة تدل على مؤنث',explanation:'فاطمة (اسم علم)، التي (اسم موصول)، هذه (اسم إشارة)، هي (ضمير)، المدرسة (معرّف بأل).',answers:[['فاطمة',30],['التي',25],['هذه',20],['هي',15],['المدرسة',10]]},
 {text:'اذكر معرفة تدل على مذكر',explanation:'محمد (اسم علم)، الذي (اسم موصول)، هذا (اسم إشارة)، هو (ضمير)، الطالب (معرّف بأل).',answers:[['محمد',30],['الذي',25],['هذا',20],['هو',15],['الطالب',10]]},
 {text:'اذكر معرفة تدل على شيء في المطبخ',explanation:'الملعقة، السكين، الصحن: معارف معرّفة بأل.',answers:[['الملعقة',30],['السكين',25],['الصحن',20],['الكوب',15],['الإبريق',10]]},
-{text:'اذكر معرفة تدل على فصل من فصول السنة',explanation:'الصيف، الشتاء، الربيع، الخريف: معارف معرّفة بأل.',answers:[['الصيف',30],['الشتاء',25],['الربيع',20],['الخريف',15]]}],
+{text:'اذكر معرفة تدل على فصل من فصول السنة',explanation:'الصيف، الشتاء، الربيع، الخريف: معارف معرّفة بأل.',answers:[['الصيف',30],['الشتاء',25],['الربيع',20],['الخريف',15]]},
+{text:'اذكر معرفة تدل على مهنة',explanation:'المعلم، الطبيب، المهندس: معارف معرّفة بأل.',answers:[['المعلم',30],['الطبيب',25],['المهندس',20],['الطيار',15],['النجار',10]]},
+{text:'اذكر معرفة تدل على شيء في السماء',explanation:'الشمس، القمر، النجمة: معارف معرّفة بأل.',answers:[['الشمس',30],['القمر',25],['النجمة',20],['الغيمة',15],['الطائرة',10]]},
+{text:'اذكر معرفة تدل على وسيلة نقل',explanation:'السيارة، الحافلة، الطائرة: معارف معرّفة بأل.',answers:[['السيارة',30],['الحافلة',25],['الطائرة',20],['الدراجة',15],['القطار',10]]},
+{text:'اذكر معرفة تدل على فاكهة',explanation:'التفاح، الموز، البرتقال: معارف معرّفة بأل.',answers:[['التفاح',30],['الموز',25],['البرتقال',20],['العنب',15],['التمر',10]]}],
 'المعرّف بأل':[
 {text:'اذكر اسمًا معرّفًا بأل التعريف',explanation:'تدخل «أل» على النكرة فتصبح معرفة: كتاب ← الكتاب.',answers:[['الكتاب',30],['المدرسة',25],['الطالب',20],['القلم',15],['الشجرة',10]]},
 {text:'اذكر اسم حيوان معرّفًا بأل',explanation:'الأسد، القطة، الحصان: أسماء معرّفة بأل، وأصل الأول نكرة: أسد.',answers:[['الأسد',30],['القطة',25],['الحصان',20],['الجمل',15],['العصفور',10]]},
@@ -130,7 +144,15 @@ const BANK={
 {text:'اذكر جزءًا من الشجرة معرّفًا بأل',explanation:'الورقة، الغصن، الجذع: أسماء معرّفة بأل، وأصل الأول نكرة: ورقة.',answers:[['الورقة',30],['الغصن',25],['الجذع',20],['الثمرة',15],['الجذر',10]]},
 {text:'اذكر شيئًا في السماء معرّفًا بأل',explanation:'الشمس، القمر، النجمة: أسماء معرّفة بأل، وأصل الأول نكرة: شمس.',answers:[['الشمس',30],['القمر',25],['النجمة',20],['الغيمة',15],['الطائرة',10]]},
 {text:'اذكر مادة دراسية معرّفة بأل',explanation:'اللغة، العلوم، الرياضيات: أسماء معرّفة بأل، وأصل الأول نكرة: لغة.',answers:[['اللغة',30],['العلوم',25],['الرياضيات',20],['التاريخ',15],['الجغرافيا',10]]},
-{text:'اذكر حيوانًا أليفًا معرّفًا بأل',explanation:'القطة، الكلب، الأرنب: أسماء معرّفة بأل، وأصل الأول نكرة: قطة.',answers:[['القطة',30],['الكلب',25],['الأرنب',20],['الببغاء',15],['السمكة',10]]}],
+{text:'اذكر حيوانًا أليفًا معرّفًا بأل',explanation:'القطة، الكلب، الأرنب: أسماء معرّفة بأل، وأصل الأول نكرة: قطة.',answers:[['القطة',30],['الكلب',25],['الأرنب',20],['الببغاء',15],['السمكة',10]]},
+{text:'اذكر شيئًا في الحديقة معرّفًا بأل',explanation:'الشجرة، الزهرة، العشب: أسماء معرّفة بأل، وأصل الأول نكرة: شجرة.',answers:[['الشجرة',30],['الزهرة',25],['العشب',20],['المقعد',15],['الممر',10]]},
+{text:'اذكر شيئًا في المسجد معرّفًا بأل',explanation:'المحراب، المنارة، السجادة: أسماء معرّفة بأل، وأصل الأول نكرة: محراب.',answers:[['المحراب',30],['المنارة',25],['السجادة',20],['المصحف',15],['القبة',10]]},
+{text:'اذكر شيئًا في المستشفى معرّفًا بأل',explanation:'الطبيب، الممرضة، السرير: أسماء معرّفة بأل، وأصل الأول نكرة: طبيب.',answers:[['الطبيب',30],['الممرضة',25],['السرير',20],['الدواء',15],['الإسعاف',10]]},
+{text:'اذكر شيئًا في السوق معرّفًا بأل',explanation:'البائع، البضاعة، السلة: أسماء معرّفة بأل، وأصل الأول نكرة: بائع.',answers:[['البائع',30],['البضاعة',25],['السلة',20],['الميزان',15],['المحل',10]]},
+{text:'اذكر شيئًا في المكتبة معرّفًا بأل',explanation:'الكتاب، الرف، المجلة: أسماء معرّفة بأل، وأصل الأول نكرة: كتاب.',answers:[['الكتاب',30],['الرف',25],['المجلة',20],['القصة',15],['الطاولة',10]]},
+{text:'اذكر فاكهة صيفية معرّفة بأل',explanation:'البطيخ، العنب، الخوخ: أسماء معرّفة بأل، وأصل الأول نكرة: بطيخ.',answers:[['البطيخ',30],['العنب',25],['الخوخ',20],['التين',15],['المشمش',10]]},
+{text:'اذكر شيئًا في المدرسة معرّفًا بأل',explanation:'المقصف، الملعب، المختبر: أسماء معرّفة بأل، وأصل الأول نكرة: مقصف.',answers:[['المقصف',30],['الملعب',25],['المختبر',20],['الساحة',15],['المكتبة',10]]},
+{text:'اذكر يومًا من أيام الأسبوع',explanation:'الأحد، الاثنين، الثلاثاء: أسماء أيام معرّفة بأل.',answers:[['الأحد',30],['الاثنين',25],['الثلاثاء',20],['الأربعاء',15],['الخميس',10],['الجمعة',5],['السبت',5]]}],
 'أسماء العلم':[
 {text:'اذكر اسم علم لشخص',explanation:'اسم العلم يدل على شخص أو بلد بعينه، مثل: محمد، فاطمة، الأردن.',answers:[['محمد',30],['أحمد',25],['فاطمة',20],['خالد',15],['مريم',10]]},
 {text:'اذكر اسم علم لأنثى',explanation:'فاطمة، مريم، عائشة: أعلام لإناث.',answers:[['فاطمة',30],['مريم',25],['عائشة',20],['سارة',15],['زينب',10]]},
@@ -150,7 +172,17 @@ const BANK={
 {text:'اذكر اسم علم لشخص يبدأ بحرف العين',explanation:'عمر، علي، عائشة: أعلام لأشخاص.',answers:[['عمر',30],['علي',25],['عائشة',20],['عبد الله',15],['عادل',10]]},
 {text:'اذكر اسم علم لمدينة أردنية جنوبية',explanation:'العقبة، الكرك، معان: أعلام لمدن أردنية.',answers:[['العقبة',30],['الكرك',25],['معان',20],['الطفيلة',15]]},
 {text:'اذكر اسم علم لأنثى يبدأ بحرف الميم',explanation:'مريم، منى، مها: أعلام لإناث.',answers:[['مريم',30],['منى',25],['مها',20],['ميس',15],['ملك',10]]},
-{text:'اذكر اسم علم لذكر يبدأ بحرف الميم',explanation:'محمد، محمود، ماجد: أعلام لذكور.',answers:[['محمد',30],['محمود',25],['ماجد',20],['مصطفى',15],['مازن',10]]}],
+{text:'اذكر اسم علم لذكر يبدأ بحرف الميم',explanation:'محمد، محمود، ماجد: أعلام لذكور.',answers:[['محمد',30],['محمود',25],['ماجد',20],['مصطفى',15],['مازن',10]]},
+{text:'اذكر اسم علم لأنثى يبدأ بحرف الفاء',explanation:'فاطمة، فرح، فدوى: أعلام لإناث.',answers:[['فاطمة',40],['فرح',30],['فدوى',20],['فيروز',10]]},
+{text:'اذكر اسم علم لذكر يبدأ بحرف الخاء',explanation:'خالد، خليل، خضر: أعلام لذكور.',answers:[['خالد',40],['خليل',30],['خضر',20],['خليفة',10]]},
+{text:'اذكر اسم علم لشخص يبدأ بحرف الياء',explanation:'يوسف، ياسر، يزن: أعلام لأشخاص.',answers:[['يوسف',30],['ياسر',25],['يزن',20],['ياسمين',15],['يارا',10]]},
+{text:'اذكر اسم علم لشخص يبدأ بحرف الراء',explanation:'رنا، ريم، رامي: أعلام لأشخاص.',answers:[['رنا',30],['ريم',25],['رامي',20],['رائد',15],['رشا',10]]},
+{text:'اذكر اسم علم لمدينة سعودية',explanation:'مكة، المدينة، الرياض: أعلام لمدن سعودية.',answers:[['مكة',30],['المدينة',25],['الرياض',20],['جدة',15],['الدمام',10]]},
+{text:'اذكر اسم علم لمدينة مصرية',explanation:'القاهرة، الإسكندرية، أسوان: أعلام لمدن مصرية.',answers:[['القاهرة',30],['الإسكندرية',25],['أسوان',20],['الأقصر',15],['بورسعيد',10]]},
+{text:'اذكر اسم علم لمدينة في العراق',explanation:'بغداد، البصرة، الموصل: أعلام لمدن عراقية.',answers:[['بغداد',30],['البصرة',25],['الموصل',20],['كربلاء',15],['أربيل',10]]},
+{text:'اذكر اسم علم لمدينة في سوريا',explanation:'دمشق، حلب، حمص: أعلام لمدن سورية.',answers:[['دمشق',30],['حلب',25],['حمص',20],['اللاذقية',15],['حماة',10]]},
+{text:'اذكر اسم علم لدولة أوروبية',explanation:'فرنسا، ألمانيا، إيطاليا: أعلام لدول أوروبية.',answers:[['فرنسا',30],['ألمانيا',25],['إيطاليا',20],['إسبانيا',15],['بريطانيا',10]]},
+{text:'اذكر اسم علم لدولة آسيوية غير عربية',explanation:'تركيا، اليابان، الصين: أعلام لدول آسيوية.',answers:[['تركيا',30],['اليابان',25],['الصين',20],['الهند',15],['إيران',10]]}],
 'أسماء الإشارة':[
 {text:'اذكر اسم إشارة للقريب',explanation:'هذا للمفرد المذكر، هذه للمفرد المؤنث، هذان للمثنى المذكر، هاتان للمثنى المؤنث، هؤلاء للجمع.',answers:[['هذا',30],['هذه',25],['هؤلاء',20],['هذان',15],['هاتان',10]]},
 {text:'اذكر اسم إشارة تقوله عند الإشارة إلى شيء قريب',explanation:'أسماء الإشارة للقريب: هذا، هذه، هذان، هاتان، هؤلاء.',answers:[['هذا',30],['هذه',25],['هذان',20],['هاتان',15],['هؤلاء',10]]},
@@ -158,7 +190,9 @@ const BANK={
 {text:'اذكر اسم إشارة للقريب يبدأ بحرف الهاء',explanation:'أسماء الإشارة للقريب كلها تبدأ بالهاء: هذا، هذه، هذان، هاتان، هؤلاء.',answers:[['هذا',30],['هذان',25],['هذه',20],['هؤلاء',15],['هاتان',10]]},
 {text:'اذكر اسم إشارة للقريب يدل على مفرد أو مثنى',explanation:'للمفرد: هذا، هذه. وللمثنى: هذان، هاتان.',answers:[['هذا',40],['هذه',30],['هذان',20],['هاتان',10]]},
 {text:'اذكر اسم إشارة للقريب يدل على مثنى أو جمع',explanation:'للمثنى: هذان، هاتان. وللجمع: هؤلاء.',answers:[['هذان',40],['هاتان',35],['هؤلاء',25]]},
-{text:'ما اسم الإشارة الذي تقوله عند الإشارة إلى شيء قريب؟',explanation:'هذا، هذه، هذان، هاتان، هؤلاء.',answers:[['هؤلاء',30],['هذه',25],['هذا',20],['هذان',15],['هاتان',10]]}],
+{text:'ما اسم الإشارة الذي تقوله عند الإشارة إلى شيء قريب؟',explanation:'هذا، هذه، هذان، هاتان، هؤلاء.',answers:[['هؤلاء',30],['هذه',25],['هذا',20],['هذان',15],['هاتان',10]]},
+{text:'اذكر اسم إشارة للقريب لا يدل على مفرد',explanation:'هذان وهاتان للمثنى، وهؤلاء للجمع.',answers:[['هذان',40],['هاتان',35],['هؤلاء',25]]},
+{text:'اذكر اسم إشارة للقريب لا ينتهي بحرف النون',explanation:'هذا، هذه، هؤلاء: لا تنتهي بالنون.',answers:[['هذا',40],['هذه',35],['هؤلاء',25]]}],
 'الأسماء الموصولة':[
 {text:'اذكر اسمًا موصولًا',explanation:'الأسماء الموصولة: الذي، التي، اللذان، اللتان، اللواتي، الذين.',answers:[['الذي',30],['التي',25],['الذين',20],['اللذان',15],['اللتان',10],['اللواتي',5]]},
 {text:'اذكر اسمًا موصولًا من الأسماء الموصولة الستة',explanation:'الذي، التي، اللذان، اللتان، اللواتي، الذين.',answers:[['الذين',30],['اللواتي',25],['التي',20],['الذي',15],['اللذان',10],['اللتان',5]]},
@@ -168,7 +202,10 @@ const BANK={
 {text:'اذكر اسمًا موصولًا للمثنى أو الجمع',explanation:'للمثنى: اللذان، اللتان. وللجمع: الذين، اللواتي.',answers:[['الذين',40],['اللذان',30],['اللتان',20],['اللواتي',10]]},
 {text:'اذكر اسمًا موصولًا ينتهي بحرف النون',explanation:'اللذان، اللتان، الذين: تنتهي بالنون.',answers:[['الذين',40],['اللذان',35],['اللتان',25]]},
 {text:'اذكر اسمًا موصولًا يربط الجملة بما قبلها',explanation:'الذي، التي، اللذان، اللتان، اللواتي، الذين.',answers:[['الذي',30],['التي',25],['اللذان',20],['اللتان',15],['الذين',10],['اللواتي',5]]},
-{text:'اذكر اسمًا موصولًا للمفرد أو الجمع',explanation:'للمفرد: الذي، التي. وللجمع: الذين، اللواتي.',answers:[['الذي',40],['التي',30],['الذين',20],['اللواتي',10]]}],
+{text:'اذكر اسمًا موصولًا للمفرد أو الجمع',explanation:'للمفرد: الذي، التي. وللجمع: الذين، اللواتي.',answers:[['الذي',40],['التي',30],['الذين',20],['اللواتي',10]]},
+{text:'اذكر اسمًا موصولًا لا ينتهي بحرف النون',explanation:'الذي، التي، اللواتي: لا تنتهي بالنون.',answers:[['الذي',40],['التي',35],['اللواتي',25]]},
+{text:'اذكر اسمًا موصولًا يدل على أكثر من واحد',explanation:'للمثنى: اللذان، اللتان. وللجمع: الذين، اللواتي.',answers:[['اللذان',40],['اللتان',30],['الذين',20],['اللواتي',10]]},
+{text:'اذكر اسمًا موصولًا يبدأ بـ«اللـ»',explanation:'اللذان، اللتان، اللواتي: تبدأ بـ«اللـ».',answers:[['اللذان',40],['اللتان',35],['اللواتي',25]]}],
 'الضمائر المنفصلة':[
 {text:'اذكر ضميرًا منفصلًا',explanation:'للمتكلم: أنا، نحن. وللمخاطب: أنتَ... وللغائب: هو، هي...',answers:[['أنا',30],['هو',25],['نحن',20],['أنتَ',15],['هي',10],['هم',5]]},
 {text:'اذكر ضميرًا منفصلًا للمخاطب',explanation:'ضمائر المخاطب: أنتَ، أنتِ، أنتما، أنتم، أنتنّ.',answers:[['أنتَ',30],['أنتِ',25],['أنتم',20],['أنتما',15],['أنتنّ',10]]},
@@ -183,7 +220,12 @@ const BANK={
 {text:'اذكر ضميرًا منفصلًا للمخاطب أو الغائب في الجمع',explanation:'للمخاطب: أنتم، أنتنّ. وللغائب: هم، هنّ.',answers:[['أنتم',40],['هم',30],['أنتنّ',20],['هنّ',10]]},
 {text:'اذكر ضميرًا منفصلًا ينتهي بحرف النون',explanation:'نحن، أنتنّ، هنّ: تنتهي بالنون.',answers:[['نحن',40],['أنتنّ',35],['هنّ',25]]},
 {text:'اذكر ضميرًا منفصلًا ينتهي بحرف الألف',explanation:'أنا، أنتما، هما: تنتهي بالألف.',answers:[['أنا',40],['أنتما',35],['هما',25]]},
-{text:'اذكر ضميرًا منفصلًا يدل على أكثر من واحد',explanation:'نحن، أنتما، أنتم، أنتنّ، هما، هم، هنّ.',answers:[['نحن',30],['أنتم',25],['هم',20],['أنتما',15],['هما',10],['أنتنّ',5],['هنّ',5]]}]};
+{text:'اذكر ضميرًا منفصلًا يدل على أكثر من واحد',explanation:'نحن، أنتما، أنتم، أنتنّ، هما، هم، هنّ.',answers:[['نحن',30],['أنتم',25],['هم',20],['أنتما',15],['هما',10],['أنتنّ',5],['هنّ',5]]},
+{text:'اذكر ضميرًا منفصلًا للمتكلم أو الغائب في الجمع',explanation:'للمتكلم: نحن. وللغائب: هم، هنّ.',answers:[['نحن',40],['هم',35],['هنّ',25]]},
+{text:'اذكر ضميرًا منفصلًا مكوّنًا من حرفين',explanation:'هو، هي، هم، هنّ: ضمائر من حرفين.',answers:[['هو',40],['هي',30],['هم',20],['هنّ',10]]},
+{text:'اذكر ضميرًا منفصلًا مكوّنًا من ثلاثة أحرف',explanation:'أنا، نحن، أنتَ، أنتِ، هما: ضمائر من ثلاثة أحرف.',answers:[['أنا',30],['نحن',25],['أنتَ',20],['أنتِ',15],['هما',10]]},
+{text:'اذكر ضميرًا منفصلًا للمتكلم أو الغائب المفرد',explanation:'للمتكلم: أنا. وللغائب: هو، هي.',answers:[['أنا',40],['هو',35],['هي',25]]},
+{text:'اذكر ضميرًا منفصلًا للمخاطب أو المتكلم في الجمع',explanation:'للمتكلم: نحن. وللمخاطب: أنتم، أنتنّ.',answers:[['نحن',40],['أنتم',35],['أنتنّ',25]]}]};
 const Q=Object.entries(BANK).flatMap(([l,a])=>a.map(x=>({...x,l})));
 const cq=s=>Q[s.qs?s.qs[s.qi]:0];
 const banned=()=>{try{return JSON.parse(localStorage.getItem('fikr-banned')||'[]')}catch(e){return[]}};
@@ -192,7 +234,7 @@ function pick(n){const bn=banned(),a=Q.map((_,i)=>i).filter(i=>!bn.includes(Q[i]
  const cap=Math.ceil(n/new Set(Q.map(q=>q.l)).size),cnt={},o=[];
  while(o.length<n&&a.length){let k=a.findIndex(i=>(cnt[Q[i].l]||0)<cap&&(!o.length||Q[i].l!==Q[o.at(-1)].l));if(k<0)k=a.findIndex(i=>(cnt[Q[i].l]||0)<cap);if(k<0)k=0;const i=a.splice(k,1)[0];cnt[Q[i].l]=(cnt[Q[i].l]||0)+1;o.push(i)}return o}
 const other=t=>1-t,mult=s=>s.qi===s.nr-1&&s.nr>2?3:s.qi>=2?2:1;
-const init=()=>({teams:[{n:'الفريق الأول',c:'#0756C9',score:0},{n:'الفريق الثاني',c:'#FFB629',score:0}],nr:6,rosters:[[],[]],used:[[],[]],reps:null,extra:[],snd:true,qs:null,qi:0,revealed:[],pot:0,turn:0,strikes:0,phase:'lobby',fo:null,fm:null,ev:'',hist:[],v:0});
+const init=()=>({teams:[{n:'الفريق الأول',c:'#0756C9',score:0},{n:'الفريق الثاني',c:'#FFB629',score:0}],nr:6,rosters:[[],[]],used:[[],[]],reps:null,extra:[],snd:true,tm:{secs:0,id:0,run:false},qs:null,qi:0,revealed:[],pot:0,turn:0,strikes:0,phase:'lobby',fo:null,fm:null,ev:'',hist:[],v:0});
 function award(s,t){const g=s.pot*mult(s);const teams=s.teams.map((x,i)=>i===t?{...x,score:x.score+g}:x);return{...s,teams,turn:t,phase:'roundEnd',ev:`${teams[t].n} يحصل على ${g} ${g>=3&&g<=10?'نقاط':'نقطة'}`}}
 const ALT=5;
 function pickReps(s){const used=s.used.map(x=>[...x]),reps=[null,null];[0,1].forEach(t=>{const nm=s.rosters[t];if(!nm.length)return;let pool=nm.filter(x=>!used[t].includes(x));if(!pool.length){used[t]=[];pool=nm}const r=pool[Math.random()*pool.length|0];used[t].push(r);reps[t]=r});return{reps:reps[0]||reps[1]?reps:null,used}}
@@ -200,6 +242,9 @@ function reduce(s,a){
  if(a.type==='reset')return init();
  if(a.type==='undo')return s.hist.length?{...s.hist.at(-1),hist:s.hist.slice(0,-1),v:s.v+1}:s;
  if(a.type==='snd')return{...s,snd:!s.snd,v:s.v+1};
+ if(a.type==='tmset')return s.phase==='lobby'?{...s,tm:{...s.tm,secs:a.secs,run:false},v:s.v+1}:s;
+ if(a.type==='tmstart')return s.tm.secs&&['faceoff','play','steal'].includes(s.phase)?{...s,tm:{...s.tm,id:s.tm.id+1,run:true},v:s.v+1}:s;
+ if(a.type==='tmstop')return{...s,tm:{...s.tm,run:false},v:s.v+1};
  const q=cq(s),snap={...s,hist:[]};let n=s;
  switch(a.type){
  case 'start':if(s.phase!=='lobby')return s;n={...s,...pickReps(s),extra:[],qs:pick(Math.min(s.nr,Q.length)),phase:'faceoff',fo:{first:0,ans:0,rank:null},ev:`المواجهة: يبدأ ${s.teams[0].n}`};break;
@@ -251,7 +296,7 @@ function reduce(s,a){
   if(s.qi+1>=s.nr)n={...s,phase:'end',ev:'انتهت المسابقة'};
   else n={...s,...pickReps(s),extra:[],qi:s.qi+1,revealed:[],pot:0,strikes:0,phase:'faceoff',fo:{first:(s.qi+1)%2,ans:(s.qi+1)%2,rank:null},ev:`المواجهة: يبدأ ${s.teams[(s.qi+1)%2].n}`};break}
  default:return s}
- return{...n,hist:[...s.hist.slice(-19),snap],v:s.v+1}}
+ return{...n,tm:['reveal','strike','alt','decide','next','swap'].includes(a.type)&&n.tm?{...n.tm,run:false}:n.tm,hist:[...s.hist.slice(-19),snap],v:s.v+1}}
 let s=init(),sure=false,prev={open:[],k:0,ph:'',ex:0};
 let ctx;function tone(f,t,d,ty){ctx=ctx||new(window.AudioContext||window.webkitAudioContext)();ctx.resume();const o=ctx.createOscillator(),g=ctx.createGain();o.type=ty||'sine';o.frequency.value=f;g.gain.setValueAtTime(.15,ctx.currentTime+t);g.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+t+d);o.connect(g).connect(ctx.destination);o.start(ctx.currentTime+t);o.stop(ctx.currentTime+t+d)}
 const snd={reveal:()=>{tone(660,0,.15);tone(880,.1,.2)},x:()=>tone(150,0,.5,'sawtooth'),win:()=>[523,659,784,1046,1318,1046,1318,1568].forEach((f,k)=>{tone(f,k*.16,.3);tone(f/2,k*.16,.3,'triangle')}),intro:()=>[392,392,523,659,784,659,784,1046].forEach((f,k)=>{tone(f,k*.17,.28);tone(f/2,k*.17,.28,'triangle')}),round:()=>[523,659,784,659,784,1046].forEach((f,k)=>tone(f,k*.1,.2))};
@@ -268,7 +313,7 @@ function tvHTML(){
  const tm=(x,i)=>`<aside class="team${s.turn===i&&['faceoff','decide','play','steal','roundEnd'].includes(s.phase)?' active':''}" style="--tc:${x.c}"><h3>${x.n}</h3><strong>${x.score}</strong><small>${s.turn===i&&s.phase==='steal'?'يسرق':s.turn===i&&['play','decide'].includes(s.phase)?'الدور':'&nbsp;'}</small></aside>`;
  if(s.phase==='lobby')return`<div class="endcard" style="grid-column:1/-1">${logo}<div class="win">بانتظار المعلم</div><div class="fin">${t.map(x=>`<span style="--tc:${x.c}">${x.n}</span>`).join('')}</div></div>`;
 const duel=s.reps&&['faceoff','decide'].includes(s.phase)?`<div class="duel"><span style="--tc:${t[0].c}">${s.reps[0]||t[0].n}</span><b>ضد</b><span style="--tc:${t[1].c}">${s.reps[1]||t[1].n}</span></div>`:'',ex=s.extra.length?`<div class="extra">${s.extra.map(e=>`<span>${e.t}<em>+5</em></span>`).join('')}</div>`:'';
- return`${xs}${tm(t[0],0)}<section class="board"><div class="top"><span class="chip">${last?'الجولة الأخيرة':`الجولة ${s.qi+1} من ${s.nr}`} · ×${mult(s)}</span>${logo}<div class="bank">${bank}</div></div>
+ return`${xs}${tm(t[0],0)}<section class="board"><div class="top"><span class="chip">${last?'الجولة الأخيرة':`الجولة ${s.qi+1} من ${s.nr}`} · ×${mult(s)}</span><span class="tmslot">${tmHTML()}</span>${logo}<div class="bank">${bank}</div></div>
  <p class="q">${q.text}</p>${duel}<ol>${li}</ol>${ex}<div class="sk">${[0,1,2].map(i=>`<b class="${i<s.strikes?'on':''}">✕</b>`).join('')}</div><div class="ev">${s.ev}</div></section>${tm(t[1],1)}`}
 function ctlHTML(){
  const B=(l,a,c)=>`<button class="${c||''}" data-a='${JSON.stringify(a)}'>${l}</button>`;
@@ -278,8 +323,8 @@ function ctlHTML(){
  const q=cq(s);let h=`<div class="sc">${s.teams.map(x=>`<span style="--tc:${x.c}">${x.n}<b>${x.score}</b></span>`).join('')}</div>${roomInfo}<p>${s.ev}</p>`;
  const ans=()=>'<div class="ag">'+q.answers.map((a,i)=>`<button ${s.revealed.includes(i)?'disabled':''} data-a='${JSON.stringify({type:'reveal',i})}'>${i+1}. ${a[0]} (${a[1]})</button>`).join('')+'</div>'+B('إجابة خاطئة ✕',{type:'strike'},'red wide');
  const p=s.phase;
- if(['faceoff','decide','play','steal','roundEnd'].includes(p)){h+=`<div class="qbox"><small>${q.l}</small>${q.text}</div>`;if(['faceoff','play'].includes(p)&&!s.revealed.length&&!s.extra.length)h+='<div class="ag">'+B('غيّر السؤال (نفس الدرس)',{type:'swap',same:true})+B('غيّر السؤال (درس آخر)',{type:'swap',same:false})+'</div>'+B('غيّره واستبعده نهائيًا من البنك',{type:'swap',same:true,ban:true},'red wide')}
- if(p==='lobby')h+=`<input id="n0" value="${s.teams[0].n}"><input id="n1" value="${s.teams[1].n}"><button class="wide" data-names="1">حفظ أسماء الفريقين</button><textarea id="r0" rows="3" placeholder="أسماء طلاب ${s.teams[0].n} (اسم في كل سطر)">${s.rosters[0].join('\n')}</textarea><textarea id="r1" rows="3" placeholder="أسماء طلاب ${s.teams[1].n} (اسم في كل سطر)">${s.rosters[1].join('\n')}</textarea><button class="wide" data-roster="1">حفظ أسماء الطلاب (لاختيار المتنافسين عشوائيًا)</button><p>عدد الجولات: ${s.nr} (الأخيرة ×3) · تُختار الأسئلة عشوائيًا من بنك فيه ${Q.length} سؤالًا${banned().length?` (مستبعد منها ${banned().length})`:''}</p>`+[4,6,8,12].map(n=>B(n,{type:'rounds',n},s.nr===n?'gold':'')).join('')+(banned().length?B('استعادة الأسئلة المستبعدة',{type:'unban'}):'')+B('ابدأ المسابقة',{type:'start'},'gold wide');
+ if(['faceoff','decide','play','steal','roundEnd'].includes(p)){h+=`<div class="qbox"><small>${q.l}</small>${q.text}</div>`;if(s.tm.secs&&['faceoff','play','steal'].includes(p))h+=B(s.tm.run?'إيقاف العدّ':'ابدأ العدّ التنازلي ('+s.tm.secs+' ث)',{type:s.tm.run?'tmstop':'tmstart'},s.tm.run?'red wide':'gold wide');if(['faceoff','play'].includes(p)&&!s.revealed.length&&!s.extra.length)h+='<div class="ag">'+B('غيّر السؤال (نفس الدرس)',{type:'swap',same:true})+B('غيّر السؤال (درس آخر)',{type:'swap',same:false})+'</div>'+B('غيّره واستبعده نهائيًا من البنك',{type:'swap',same:true,ban:true},'red wide')}
+ if(p==='lobby')h+=`<input id="n0" value="${s.teams[0].n}"><input id="n1" value="${s.teams[1].n}"><button class="wide" data-names="1">حفظ أسماء الفريقين</button><textarea id="r0" rows="3" placeholder="أسماء طلاب ${s.teams[0].n} (اسم في كل سطر)">${s.rosters[0].join('\n')}</textarea><textarea id="r1" rows="3" placeholder="أسماء طلاب ${s.teams[1].n} (اسم في كل سطر)">${s.rosters[1].join('\n')}</textarea><button class="wide" data-roster="1">حفظ أسماء الطلاب (لاختيار المتنافسين عشوائيًا)</button><p>عدد الجولات: ${s.nr} (الأخيرة ×3) · تُختار الأسئلة عشوائيًا من بنك فيه ${Q.length} سؤالًا${banned().length?` (مستبعد منها ${banned().length})`:''}</p>`+[4,6,8,12,16,20].map(n=>B(n,{type:'rounds',n},s.nr===n?'gold':'')).join('')+`<p>العدّ التنازلي لكل إجابة: ${s.tm.secs?s.tm.secs+' ثانية':'متوقف'}</p>`+[0,10,20,30,45].map(n=>B(n?n+' ث':'إيقاف',{type:'tmset',secs:n},s.tm.secs===n?'gold':'')).join('')+(banned().length?B('استعادة الأسئلة المستبعدة',{type:'unban'}):'')+B('ابدأ المسابقة',{type:'start'},'gold wide');
  if(p==='faceoff'){h+=(s.reps?`<p>المتنافسان: <b>${s.reps[0]||'—'}</b> ضد <b>${s.reps[1]||'—'}</b></p>`+B('اختيار متنافسين آخرين',{type:'reps'}):'')+`<p>يجيب الآن ممثل <b>${s.teams[s.fo.ans].n}</b></p>`+ans()+altUI}
  if(p==='decide')h+=`<p>${s.teams[s.turn].n}: العب أم مرّر؟</p>`+B('نلعب',{type:'decide',play:true},'gold')+B('نمرّر للمنافس',{type:'decide',play:false});
  if(p==='play'||p==='steal')h+=(p==='steal'?'<p>فرصة السرقة: اكشف إجابة صحيحة أو سجّل خطأ.</p>':`<p>الدور: ${s.teams[s.turn].n} · أخطاء ${s.strikes}/3</p>`)+ans()+altUI;
@@ -287,11 +332,15 @@ function ctlHTML(){
  if(p==='end'){const t=s.teams,w=t[0].score===t[1].score?-1:t[0].score>t[1].score?0:1;h+=`<div class="big">${w<0?'تعادل':'الفائز: '+t[w].n}</div>`}
  h+='<hr>'+B('تراجع',{type:'undo'})+B(s.snd?'كتم الصوت':'تشغيل الصوت',{type:'snd'})+(sure?B('تأكيد إعادة الضبط',{type:'reset'},'red')+'<button data-sure="0">إلغاء</button>':'<button data-sure="1">إعادة المسابقة</button>');
  return h+'<p style="color:var(--gold);margin-top:10px">إعداد المعلم: محمد أبودية</p>'}
-function confetti(){const c=$('cf');c.width=innerWidth;c.height=innerHeight;const g=c.getContext('2d'),P=[...Array(160)].map(()=>({x:Math.random()*c.width,y:-Math.random()*c.height*.6,vx:Math.random()*4-2,vy:2+Math.random()*5,r:4+Math.random()*6,c:['#FFB629','#4da3ff','#fff','#F04452'][Math.random()*4|0],a:Math.random()*6}));let t=0;(function f(){g.clearRect(0,0,c.width,c.height);P.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.a+=.12;g.fillStyle=p.c;g.save();g.translate(p.x,p.y);g.rotate(p.a);g.fillRect(-p.r,-p.r/2,p.r*2,p.r);g.restore()});if(++t<260)requestAnimationFrame(f);else g.clearRect(0,0,c.width,c.height)})()}
+let tmEnd=0,tmId=0,tmDone=false,lastRem=-1;
+function tmHTML(){if(tmEnd>0){const r=Math.max(0,Math.ceil((tmEnd-Date.now())/1000));return`<div class="tm${r<=5?' low':''}">${r}</div>`}return tmDone?'<div class="tm low">0</div>':''}
+function tick(){if(mode!=='screen')return;if(tmEnd>0){const r=Math.max(0,Math.ceil((tmEnd-Date.now())/1000));if(r!==lastRem){lastRem=r;if(s.snd!==false&&r>0&&r<=5)tone(900,0,.08)}if(r===0){tmEnd=0;tmDone=true;if(s.snd!==false){snd.x();say('انتهى الوقت')}}}const el=document.querySelector('.tmslot');if(el)el.innerHTML=tmHTML()}
+setInterval(tick,250);
 function say(t){try{if(!window.speechSynthesis)return;const u=new SpeechSynthesisUtterance(t);u.lang='ar-SA';u.rate=.95;speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){}}
 function render(){
  const hadX=s.x;
- if(mode==='screen'){$('tv').innerHTML=tvHTML();
+ if(mode==='screen'){if(s.tm.run){if(s.tm.id!==tmId){tmId=s.tm.id;tmEnd=Date.now()+s.tm.secs*1000;tmDone=false;lastRem=-1}}else{tmEnd=0;tmDone=false;tmId=s.tm.id}
+  $('tv').innerHTML=tvHTML();
   if(s.snd!==false){
    if(s.revealed.length>prev.open.length||s.extra.length>prev.ex)snd.reveal();
    if(s.strikes>prev.k||hadX){snd.x();say('إجابة خاطئة')}
@@ -300,8 +349,7 @@ function render(){
     else if(s.phase==='faceoff'&&prev.ph==='roundEnd')snd.round();
     if(s.phase==='steal')say('فرصة السرقة');
     if(s.phase==='roundEnd')say('أحسنتم');
-    if(s.phase==='end'){snd.win();const t=s.teams;say(t[0].score===t[1].score?'تعادل':'مبروك للفريق '+t[t[0].score>t[1].score?0:1].n)}}}
-  if(s.phase!==prev.ph&&(s.phase==='roundEnd'||s.phase==='end'))confetti()}
+    if(s.phase==='end'){snd.win();const t=s.teams;say(t[0].score===t[1].score?'تعادل':'مبروك للفريق '+t[t[0].score>t[1].score?0:1].n)}}}}
  else $('ctl').innerHTML=ctlHTML();
  prev={open:[...s.revealed],k:s.strikes,ph:s.phase,ex:s.extra.length};s={...s,x:false}}
 const isClaude=!!(window.claude&&window.claude.use),API='/api/state';
